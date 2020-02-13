@@ -11,13 +11,13 @@ public class Money_System : MonoBehaviour
     void Start()
     {
         bank = 50;
-        bankText.text = bank.ToString();
+        bankText.text = "Money: $" + bank.ToString();
     }
 
     public void addBank(int bankToAdd)
     {
         bank += bankToAdd;
-        bankText.text = bank.ToString();
+        bankText.text = "Money: $" + bank.ToString();
     }
 
     public void subtractBank(int bankToSubtract)
@@ -29,7 +29,7 @@ public class Money_System : MonoBehaviour
         else
         {
             bank -= bankToSubtract;
-            bankText.text = bank.ToString();
+            bankText.text = "Money: $" + bank.ToString();
         }
     }
 }
