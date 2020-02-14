@@ -6,6 +6,8 @@ public class Inventory : MonoBehaviour
 {
     public int[] cookies;
 
+
+
     void Start()
     {
         //initialize the array with a size
@@ -20,14 +22,85 @@ public class Inventory : MonoBehaviour
         cookies.SetValue(5, 3);
         cookies.SetValue(3, 4);
         cookies.SetValue(9, 5);
+    }
 
-        //the last element in the array should be a 6 now
-        //quick test to see if i can change the amount within a script
-        cookies[5] -= 3;
 
-        foreach (int value in cookies)
+    // IMPORTANT NOTE 
+    // The index goes from 1-6 in reference to the 6 elements in our list
+
+    // index controls which element in the array is going to alter
+    // change can be positive or negative which will subtract or add the amount
+    // error msg will print if an index is too high
+    void ChangeValue(int[] arr, int index, int change)
+    {
+        if (index == 1)
         {
-            print(value);
+            if (change < 0)
+            {
+                cookies[0] -= change;
+            }else if (change > 0)
+            {
+                cookies[0] += change;
+            }
+
+        }else if(index == 2)
+        {
+            if (change < 0)
+            {
+                cookies[1] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[1] += change;
+            }
+        }
+        else if (index == 3)
+        {
+            if (change < 0)
+            {
+                cookies[2] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[2] += change;
+            }
+        }
+        else if (index == 4)
+        {
+            if (change < 0)
+            {
+                cookies[3] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[3] += change;
+            }
+        }
+        else if (index == 5)
+        {
+            if (change < 0)
+            {
+                cookies[4] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[4] += change;
+            }
+        }
+        else if (index == 6)
+        {
+            if (change < 0)
+            {
+                cookies[5] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[5] += change;
+            }
+        }
+        else
+        {
+            print("Number is not in reference to inventory list");
         }
     }
 
