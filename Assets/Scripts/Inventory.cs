@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
         //initialize the array with a size
         //unity doesnt like to change size
         //we dont need to so we should be ok
-        cookies = new int[6];
+        int[] cookies = new int[6];
 
         //currently hardcode to set values into the array
         cookies.SetValue(8, 0);
@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
     // index controls which element in the array is going to alter
     // change can be positive or negative which will subtract or add the amount
     // error msg will print if an index is too high
-    void ChangeValue(int[] arr, int index, int change)
+    void ChangeValue(int index, int change)
     {
         if (index == 1)
         {
@@ -129,4 +129,6 @@ public class Inventory : MonoBehaviour
             print("Number is not in reference to inventory list");
         }
     }
+
+
 }
