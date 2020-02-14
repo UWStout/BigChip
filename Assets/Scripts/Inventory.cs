@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
         //initialize the array with a size
         //unity doesnt like to change size
         //we dont need to so we should be ok
-        cookies = new int[6];
+        int[] cookies = new int[6];
 
         //currently hardcode to set values into the array
         cookies.SetValue(8, 0);
@@ -30,4 +30,6 @@ public class Inventory : MonoBehaviour
             print(value);
         }
     }
+
+
 }

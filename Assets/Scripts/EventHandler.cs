@@ -5,6 +5,8 @@ using System;
 
 public class EventHandler : MonoBehaviour
 {
+     
+
     //The object is probably going to change for this delegate
     public delegate void EventHasBeenTriggered(object o, GettingEventArgs e);
 
@@ -12,7 +14,8 @@ public class EventHandler : MonoBehaviour
     {
         if (eventNum == 1)
         {
-            //Event 1
+            //Standard Sale of a single cookie
+
         }
         else if (eventNum == 2)
         {
