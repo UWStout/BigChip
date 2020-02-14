@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
     // index controls which element in the array is going to alter
     // change can be positive or negative which will subtract or add the amount
     // error msg will print if an index is too high
-    void ChangeValue(int[] arr, int index, int change)
+    void ChangeValue(int index, int change)
     {
         if (index == 1)
         {
