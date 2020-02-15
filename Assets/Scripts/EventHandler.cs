@@ -6,10 +6,31 @@ using System;
 public class EventHandler : MonoBehaviour
 {
     public int totalevents = 0;
-    public Inventory _inventory;
+    public int[] cookies;
+    public GameObject OptionA; // Make the sale button
+    public GameObject OptionB; // Refuse the sale button
 
     //The object is probably going to change for this delegate
     public delegate void EventHasBeenTriggered(object o, GettingEventArgs e);
+
+    void Start()
+    {
+        //initialize the array with a size
+        //unity doesnt like to change size
+        //we dont need to so we should be ok
+        int[] cookies = new int[6];
+
+        //currently hardcode to set values into the array
+        cookies.SetValue(8, 0);
+        cookies.SetValue(6, 1);
+        cookies.SetValue(7, 2);
+        cookies.SetValue(5, 3);
+        cookies.SetValue(3, 4);
+        cookies.SetValue(9, 5);
+
+        OptionA.SetActive(false);
+        OptionB.SetActive(false);
+    }
 
     public static int GenNumber(int totalevents)
     {
@@ -45,8 +66,13 @@ public class EventHandler : MonoBehaviour
         // ChangeValue(int index, int change)
         if (eventNum == 1)
         {
+
             //Standard Sale of a single cookie
+<<<<<<< HEAD
             //_inventory.ChangeValue(index, 1);
+=======
+            
+>>>>>>> 2b034673e17d5bc44409bae2f3ddf925e68e5bd6
         }
         else if (eventNum == 2)
         {
@@ -94,6 +120,81 @@ public class EventHandler : MonoBehaviour
             //Event 2
         }
 
+    }
+
+    void ChangeValue(int index, int change)
+    {
+        if (index == 1)
+        {
+            if (change < 0)
+            {
+                cookies[0] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[0] += change;
+            }
+
+        }
+        else if (index == 2)
+        {
+            if (change < 0)
+            {
+                cookies[1] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[1] += change;
+            }
+        }
+        else if (index == 3)
+        {
+            if (change < 0)
+            {
+                cookies[2] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[2] += change;
+            }
+        }
+        else if (index == 4)
+        {
+            if (change < 0)
+            {
+                cookies[3] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[3] += change;
+            }
+        }
+        else if (index == 5)
+        {
+            if (change < 0)
+            {
+                cookies[4] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[4] += change;
+            }
+        }
+        else if (index == 6)
+        {
+            if (change < 0)
+            {
+                cookies[5] -= change;
+            }
+            else if (change > 0)
+            {
+                cookies[5] += change;
+            }
+        }
+        else
+        {
+            print("Number is not in reference to inventory list");
+        }
     }
 }
 
