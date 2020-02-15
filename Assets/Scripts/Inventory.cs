@@ -37,8 +37,13 @@ public class Inventory : MonoBehaviour
         {
             if (change < 0)
             {
+                if (change - cookies[0] < 0)
+                {
+                    change = cookies[0];
+                }
                 cookies[0] -= change;
-            }else if (change > 0)
+            }
+            else if (change > 0)
             {
                 cookies[0] += change;
             }
@@ -47,6 +52,10 @@ public class Inventory : MonoBehaviour
         {
             if (change < 0)
             {
+                if (change - cookies[1] < 0)
+                {
+                    change = cookies[1];
+                }
                 cookies[1] -= change;
             }
             else if (change > 0)
@@ -58,6 +67,10 @@ public class Inventory : MonoBehaviour
         {
             if (change < 0)
             {
+                if (change - cookies[2] < 0)
+                {
+                    change = cookies[2];
+                }
                 cookies[2] -= change;
             }
             else if (change > 0)
@@ -69,6 +82,10 @@ public class Inventory : MonoBehaviour
         {
             if (change < 0)
             {
+                if (change - cookies[3] < 0)
+                {
+                    change = cookies[3];
+                }
                 cookies[3] -= change;
             }
             else if (change > 0)
@@ -80,6 +97,10 @@ public class Inventory : MonoBehaviour
         {
             if (change < 0)
             {
+                if (change - cookies[4] < 0)
+                {
+                    change = cookies[4];
+                }
                 cookies[4] -= change;
             }
             else if (change > 0)
@@ -91,6 +112,11 @@ public class Inventory : MonoBehaviour
         {
             if (change < 0)
             {
+                if (change - cookies[5] < 0)
+                {
+                    change = cookies[5];
+                }
+
                 cookies[5] -= change;
             }
             else if (change > 0)
