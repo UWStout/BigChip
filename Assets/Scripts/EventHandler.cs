@@ -69,7 +69,7 @@ public class EventHandler : MonoBehaviour
         else if (eventNum <= 41 && eventNum >= 65) // Sale of Multiple of One Type of Cookie
         {
             System.Random random2 = new System.Random();
-            change = random2.Next(3, 8); // Sale of between 3 and 7 of the same cookie
+            change = random2.Next(2, 6); // Sale of between 2 and 5 of the same cookie
             ChangeValue(index, change);
             // ADD MONEY TO BANK HERE
         }
