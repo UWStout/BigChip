@@ -46,7 +46,7 @@ public class EventHandler : MonoBehaviour
         if (eventNum == 1)
         {
             //Standard Sale of a single cookie
-            _inventory.ChangeValue(index, 1);
+            //_inventory.ChangeValue(index, 1);
         }
         else if (eventNum == 2)
         {
