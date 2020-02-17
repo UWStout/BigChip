@@ -11,7 +11,7 @@ public class GameplayManager : MonoBehaviour
     public void UpdateBank(int bank)
     {
         currentBank += bank;
-        bankText.text = "Money: " + bank.ToString();
+        bankText.text = "Money: $" + bank.ToString();
     }
 
 }
