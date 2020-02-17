@@ -135,13 +135,21 @@ public class Inventory : MonoBehaviour
                 cookies[5] += change;
             }
         }
+
         else
         {
             print("Number is not in reference to inventory list");
         }
-        bank = price[index] * change;
-        _bankSend.UpdateBank(bank);
+
+        if (index >= 1 && index <= 6)
+        {
+            bank = price[index - 1] * change;
+            _bankSend.UpdateBank(bank);
+        }
+        else if (index == 7)
+        {
+            bank = change;
+            _bankSend.UpdateBank(bank);
+        }
     }
-
-
 }

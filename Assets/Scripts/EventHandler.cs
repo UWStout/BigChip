@@ -61,18 +61,18 @@ public class EventHandler : MonoBehaviour
         int index = random.Next(1, 7);
         int change;
 
-        if (eventNum <= 1 && eventNum >= 40) //Standard Sale of a single cookie
+        if (eventNum >= 1 && eventNum <= 40) //Standard Sale of a single cookie
         {
             change = 1;
             _inventory.ChangeValue(index, change);
         }
-        else if (eventNum <= 41 && eventNum >= 65) // Sale of Multiple of One Type of Cookie
+        else if (eventNum >= 41 && eventNum <= 65) // Sale of Multiple of One Type of Cookie
         {
             System.Random random2 = new System.Random();
             change = random2.Next(2, 6); // Sale of between 2 and 5 of the same cookie
             _inventory.ChangeValue(index, change);
         }
-        else if (eventNum <= 66 && eventNum >= 80) // Sale of Multiple Types of Cookies
+        else if (eventNum >= 66 && eventNum <= 80) // Sale of Multiple Types of Cookies
         {
             int index2;
             int change2;
@@ -88,7 +88,7 @@ public class EventHandler : MonoBehaviour
             _inventory.ChangeValue(index, change);
             _inventory.ChangeValue(index2, change2);
         }
-        else if (eventNum <= 81 && eventNum >= 90) // Buys one of each type of cookie
+        else if (eventNum >= 81 && eventNum <= 90) // Buys one of each type of cookie
         {
             _inventory.ChangeValue(1, 1);
             _inventory.ChangeValue(2, 1);
@@ -97,10 +97,10 @@ public class EventHandler : MonoBehaviour
             _inventory.ChangeValue(5, 1);
             _inventory.ChangeValue(6, 1);
         }
-        else if (eventNum <= 91 && eventNum >= 100) // You get a tip with your standard delivery
+        else if (eventNum >= 91 && eventNum <= 100) // You get a tip with your standard delivery
         {
             _inventory.ChangeValue(index, 1);
-            // ADD BONUS MONEY TO BANK HERE
+            _inventory.ChangeValue(7, 7); // $7 dollar tip. Sends to a unique index reference which doesn't affect inventory.
         }
 
     }
@@ -110,7 +110,7 @@ public class EventHandler : MonoBehaviour
     {
         if (eventNum <= 1 && eventNum >= 5) // You find money on the ground
         {
-            
+            _inventory.ChangeValue(7, 10);
         }
         else if(eventNum == 2)
         {
