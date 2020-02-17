@@ -8,6 +8,7 @@ public class EventHandler : MonoBehaviour
     public int totalevents = 0;
     public static int[] cookies;
     public int bank = 0;
+    public Inventory _inventory;
 
     //The object is probably going to change for this delegate
     public delegate void EventHasBeenTriggered(object o, GettingEventArgs e);
@@ -28,7 +29,7 @@ public class EventHandler : MonoBehaviour
         cookies.SetValue(9, 5);
     }
 
-    public static int GenNumber(int totalevents)
+    public int GenNumber(int totalevents)
     {
         System.Random random = new System.Random();
         int eventNum = random.Next(1, 101); // The end number is the first digit that doesn't get included in the randomizer, so this is 1 to 100
@@ -54,7 +55,7 @@ public class EventHandler : MonoBehaviour
         return totalevents;
     }
 
-    public static void OnHouseEventNum(int eventNum)
+    public void OnHouseEventNum(int eventNum)
     { // WILL NEED TO ADD DIALOGUE AND MONEY TO EVERY SCENARIO
         System.Random random = new System.Random();
         int index = random.Next(1, 7);
@@ -63,15 +64,13 @@ public class EventHandler : MonoBehaviour
         if (eventNum <= 1 && eventNum >= 40) //Standard Sale of a single cookie
         {
             change = 1;
-            ChangeValue(index, change);
-            // ADD MONEY TO BANK HERE
+            _inventory.ChangeValue(index, change);
         }
         else if (eventNum <= 41 && eventNum >= 65) // Sale of Multiple of One Type of Cookie
         {
             System.Random random2 = new System.Random();
             change = random2.Next(2, 6); // Sale of between 2 and 5 of the same cookie
-            ChangeValue(index, change);
-            // ADD MONEY TO BANK HERE
+            _inventory.ChangeValue(index, change);
         }
         else if (eventNum <= 66 && eventNum >= 80) // Sale of Multiple Types of Cookies
         {
@@ -86,35 +85,34 @@ public class EventHandler : MonoBehaviour
             {
                 index2 = random3.Next(1, 7);
             }
-            ChangeValue(index, change); 
-            ChangeValue(index2, change2);
-            // ADD MONEY TO BANK HERE
+            _inventory.ChangeValue(index, change);
+            _inventory.ChangeValue(index2, change2);
         }
         else if (eventNum <= 81 && eventNum >= 90) // Buys one of each type of cookie
         {
-            ChangeValue(1, 1);
-            ChangeValue(2, 1);
-            ChangeValue(3, 1);
-            ChangeValue(4, 1);
-            ChangeValue(5, 1);
-            ChangeValue(6, 1);
-            // ADD MONEY TO BANK HERE
+            _inventory.ChangeValue(1, 1);
+            _inventory.ChangeValue(2, 1);
+            _inventory.ChangeValue(3, 1);
+            _inventory.ChangeValue(4, 1);
+            _inventory.ChangeValue(5, 1);
+            _inventory.ChangeValue(6, 1);
         }
         else if (eventNum <= 91 && eventNum >= 100) // You get a tip with your standard delivery
         {
-            ChangeValue(index, 1);
-            // ADD MONEY TO BANK HERE + BONUS
+            _inventory.ChangeValue(index, 1);
+            // ADD BONUS MONEY TO BANK HERE
         }
 
     }
 
 
-    public static void OnRandEventNum(int eventNum)
+    public void OnRandEventNum(int eventNum)
     {
-        if (eventNum == 1)
+        if (eventNum <= 1 && eventNum >= 5) // You find money on the ground
         {
-            //Event 1
-        }else if(eventNum == 2)
+            
+        }
+        else if(eventNum == 2)
         {
             //Event 2
         }
@@ -131,113 +129,6 @@ public class EventHandler : MonoBehaviour
             //Event 2
         }
 
-    }
-
-    // MIGHT HAVE TO SWITCH THIS TO INT IN ORDER TO RETURN A VALUE FOR THE MONEY YOU GET
-    public static void ChangeValue(int index, int change)
-    {
-        if (index == 1)
-        {
-            if (change < 0)
-            {
-                cookies[0] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[0] += change;
-            }
-        }
-        else if (index == 2)
-        {
-            if (change < 0)
-            {
-                cookies[1] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[1] += change;
-            }
-        }
-        else if (index == 3)
-        {
-            if (change < 0)
-            {
-                cookies[2] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[2] += change;
-            }
-        }
-        else if (index == 4)
-        {
-            if (change < 0)
-            {
-                cookies[3] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[3] += change;
-            }
-        }
-        else if (index == 5)
-        {
-            if (change < 0)
-            {
-                cookies[4] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[4] += change;
-            }
-        }
-        else if (index == 6)
-        {
-            if (change < 0)
-            {
-                cookies[5] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[5] += change;
-            }
-        }
-        else
-        {
-            print("Number is not in reference to inventory list");
-        }
-    }
-
-    public static void BankUpdate(int index, int bank, int change)
-    {
-        if (index == 1)
-        {
-
-        }
-        else if (index == 2)
-        {
-
-        }
-        else if (index == 3)
-        {
-
-        }
-        else if (index == 4)
-        {
-
-        }
-        else if (index == 5)
-        {
-
-        }
-        else if (index == 6)
-        {
-
-        }
-        else
-        {
-
-        }
     }
 }
 

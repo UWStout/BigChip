@@ -5,7 +5,9 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public int[] cookies;
-
+    public int[] price;
+    public int bank;
+    public GameplayManager _bankSend;
 
 
     void Start()
@@ -13,7 +15,8 @@ public class Inventory : MonoBehaviour
         //initialize the array with a size
         //unity doesnt like to change size
         //we dont need to so we should be ok
-        int[] cookies = new int[6];
+        int[] cookies = new int[7]; // This is going to have a blank index spot for special events. Only the first six are cookies.
+        int[] price = new int[6];
 
         //currently hardcode to set values into the array
         cookies.SetValue(8, 0);
@@ -22,6 +25,14 @@ public class Inventory : MonoBehaviour
         cookies.SetValue(5, 3);
         cookies.SetValue(3, 4);
         cookies.SetValue(9, 5);
+
+        //hardcoded to give each cookie a specific price
+        price.SetValue(5, 0);
+        price.SetValue(10, 1);
+        price.SetValue(10, 2);
+        price.SetValue(8, 3);
+        price.SetValue(8, 4);
+        price.SetValue(5, 5);
     }
 
 
@@ -31,7 +42,7 @@ public class Inventory : MonoBehaviour
     // index controls which element in the array is going to alter
     // change can be positive or negative which will subtract or add the amount
     // error msg will print if an index is too high
-    void ChangeValue(int index, int change)
+    public void ChangeValue(int index, int change)
     {
         if (index == 1)
         {
@@ -128,6 +139,8 @@ public class Inventory : MonoBehaviour
         {
             print("Number is not in reference to inventory list");
         }
+        bank = price[index] * change;
+        _bankSend.UpdateBank(bank);
     }
 
 
