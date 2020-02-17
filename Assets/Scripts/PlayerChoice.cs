@@ -6,14 +6,18 @@ using UnityEngine.Events;
 
 public class PlayerChoice : MonoBehaviour
 {
-    public Button Choice;
-    public Button Other;
+    public static Button Choice;
+    public static Button Other;
     public bool user;
+    public static bool isActive;
 
     void Start()
-    {
+    { 
         Button btn = Choice.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
+        Choice.transform.gameObject.SetActive(false);
+        Other.transform.gameObject.SetActive(false);
+        isActive = false;
     }
 
     void TaskOnClick()
@@ -31,6 +35,7 @@ public class PlayerChoice : MonoBehaviour
 
         Choice.transform.gameObject.SetActive(false);
         Other.transform.gameObject.SetActive(false);
+        isActive = false;
     }
 
     public bool ReturnUserInput()

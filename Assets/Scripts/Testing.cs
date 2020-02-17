@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    private EventTimer functionTimer;
+    //private bool decided;
 
     private void Start()
     {
-        functionTimer = new EventTimer(TestingAction, 3f);
-    }
-
-    private void Update()
-    {
-        functionTimer.Update();
+        EventTimer.Create(TestingAction, 25f);
     }
 
     private void TestingAction()
     {
-        Debug.Log("Testing");
+        PlayerChoice.isActive = true;
+        PlayerChoice.Choice.transform.gameObject.SetActive(true);
+        PlayerChoice.Other.transform.gameObject.SetActive(true);
+        //call event function
     }
 
 }
