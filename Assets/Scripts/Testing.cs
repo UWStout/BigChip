@@ -14,8 +14,8 @@ public class Testing : MonoBehaviour
     private void TestingAction()
     {
         PlayerChoice.isActive = true;
-        PlayerChoice.Choice.transform.gameObject.SetActive(true);
-        PlayerChoice.Other.transform.gameObject.SetActive(true);
+       // PlayerChoice.Choice.transform.gameObject.SetActive(true);
+       // PlayerChoice.Other.transform.gameObject.SetActive(true);
         //call event function
     }
 
