@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    //private bool decided;
+    private static bool decided;
 
     private void Start()
     {
@@ -14,9 +14,9 @@ public class Testing : MonoBehaviour
     private void TestingAction()
     {
         PlayerChoice.isActive = true;
-       // PlayerChoice.Choice.transform.gameObject.SetActive(true);
-       // PlayerChoice.Other.transform.gameObject.SetActive(true);
-        //call event function
+        PlayerChoice.Choice.transform.gameObject.SetActive(true);
+        PlayerChoice.Other.transform.gameObject.SetActive(true);
+        decided = PlayerChoice.user; 
     }
 
 }

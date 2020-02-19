@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 public class PlayerChoice : MonoBehaviour
 {
-    public Button Choice;
-    public Button Other;
-    public bool user;
+    public static Button Choice;
+    public static Button Other;
+    public static bool user;
     public static bool isActive;
 
     void Start()
@@ -38,8 +38,8 @@ public class PlayerChoice : MonoBehaviour
         isActive = false;
     }
 
-    public bool ReturnUserInput()
+    public static bool ReturnUserInput()
     {
-        return user;
+        return PlayerChoice.user;
     }
 }
