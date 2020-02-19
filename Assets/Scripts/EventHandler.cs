@@ -6,8 +6,6 @@ using System;
 public class EventHandler : MonoBehaviour
 {
     public int totalevents = 0;
-    public static int[] cookies;
-    public int bank = 0;
     public Inventory _inventory;
 
     //The object is probably going to change for this delegate
@@ -15,18 +13,7 @@ public class EventHandler : MonoBehaviour
 
     void Start()
     {
-        //initialize the array with a size
-        //unity doesnt like to change size
-        //we dont need to so we should be ok
-        int[] cookies = new int[6];
 
-        //currently hardcode to set values into the array
-        cookies.SetValue(8, 0);
-        cookies.SetValue(6, 1);
-        cookies.SetValue(7, 2);
-        cookies.SetValue(5, 3);
-        cookies.SetValue(3, 4);
-        cookies.SetValue(9, 5);
     }
 
     public int GenNumber(int totalevents)

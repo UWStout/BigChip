@@ -12,17 +12,30 @@ public class Inventory : MonoBehaviour
     public Text bankText;
     private int currentBank;
 
+    public Text cookie1;
+    public Text cookie2;
+    public Text cookie3;
+    public Text cookie4;
+    public Text cookie5;
+    public Text cookie6;
+
 
     void Start()
     {
-
+        cookie1.text = cookies[0].ToString();
+        cookie2.text = cookies[1].ToString();
+        cookie3.text = cookies[2].ToString();
+        cookie4.text = cookies[3].ToString();
+        cookie5.text = cookies[4].ToString();
+        cookie6.text = cookies[5].ToString();
+        bankText.text = "Money: $" + bank.ToString();
     }
 
 
     // IMPORTANT NOTE 
     // The index goes from 1-6 in reference to the 6 elements in our list
-
-    // index controls which element in the array is going to alter
+    // However, index can go higher during the case of a special event
+    // index primarily controls which element in the array is going to alter
     // change can be positive or negative which will subtract or add the amount
     // error msg will print if an index is too high
     public void ChangeValue(int index, int change)
@@ -48,6 +61,7 @@ public class Inventory : MonoBehaviour
             {
                 cookies[index - 1] += change; // Gaining inventory. Just add it on. No call to bank.
             }
+            UpdateInventory();
         }
         else if (index == 7)
         {
@@ -63,6 +77,16 @@ public class Inventory : MonoBehaviour
     public void UpdateBank()
     {
         currentBank += bank;
-        bankText.text = "Money: $" + bank.ToString();
+        bankText.text = "Money: $" + currentBank.ToString();
+    }
+
+    public void UpdateInventory()
+    {
+        cookie1.text = cookies[0].ToString();
+        cookie2.text = cookies[1].ToString();
+        cookie3.text = cookies[2].ToString();
+        cookie4.text = cookies[3].ToString();
+        cookie5.text = cookies[4].ToString();
+        cookie6.text = cookies[5].ToString();
     }
 }
