@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public int[] cookies;
-    public int[] price;
+    public int[] cookies = new int[6];
+    public int[] price = new int[6];
     public int bank;
-    public GameplayManager _bankSend;
+
+    public Text bankText;
+    private int currentBank;
 
 
     void Start()
@@ -15,24 +18,21 @@ public class Inventory : MonoBehaviour
         //initialize the array with a size
         //unity doesnt like to change size
         //we dont need to so we should be ok
-        int[] cookies = new int[7]; // This is going to have a blank index spot for special events. Only the first six are cookies.
-        int[] price = new int[6];
-
         //currently hardcode to set values into the array
-        cookies.SetValue(8, 0);
-        cookies.SetValue(6, 1);
-        cookies.SetValue(7, 2);
-        cookies.SetValue(5, 3);
-        cookies.SetValue(3, 4);
-        cookies.SetValue(9, 5);
+        //cookies.SetValue(8, 0);
+        //cookies.SetValue(6, 1);
+        //cookies.SetValue(7, 2);
+        //cookies.SetValue(5, 3);
+        //cookies.SetValue(3, 4);
+        //cookies.SetValue(9, 5);
 
         //hardcoded to give each cookie a specific price
-        price.SetValue(5, 0);
-        price.SetValue(10, 1);
-        price.SetValue(10, 2);
-        price.SetValue(8, 3);
-        price.SetValue(8, 4);
-        price.SetValue(5, 5);
+        //price.SetValue(5, 0);
+        //price.SetValue(10, 1);
+        //price.SetValue(10, 2);
+        //price.SetValue(8, 3);
+        //price.SetValue(8, 4);
+        //price.SetValue(5, 5);
     }
 
 
@@ -44,112 +44,133 @@ public class Inventory : MonoBehaviour
     // error msg will print if an index is too high
     public void ChangeValue(int index, int change)
     {
-        if (index == 1)
-        {
-            if (change < 0)
-            {
-                if (change - cookies[0] < 0)
-                {
-                    change = cookies[0];
-                }
-                cookies[0] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[0] += change;
-            }
+        //if (index == 1)
+        //{
+        //    if (change < 0)
+        //    {
+        //        if (change - cookies[0] < 0)
+        //        {
+        //            change = cookies[0];
+        //        }
+        //        cookies[0] -= change;
+        //    }
+        //    else if (change > 0)
+        //    {
+        //        cookies[0] += change;
+        //    }
 
-        }else if(index == 2)
-        {
-            if (change < 0)
-            {
-                if (change - cookies[1] < 0)
-                {
-                    change = cookies[1];
-                }
-                cookies[1] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[1] += change;
-            }
-        }
-        else if (index == 3)
-        {
-            if (change < 0)
-            {
-                if (change - cookies[2] < 0)
-                {
-                    change = cookies[2];
-                }
-                cookies[2] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[2] += change;
-            }
-        }
-        else if (index == 4)
-        {
-            if (change < 0)
-            {
-                if (change - cookies[3] < 0)
-                {
-                    change = cookies[3];
-                }
-                cookies[3] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[3] += change;
-            }
-        }
-        else if (index == 5)
-        {
-            if (change < 0)
-            {
-                if (change - cookies[4] < 0)
-                {
-                    change = cookies[4];
-                }
-                cookies[4] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[4] += change;
-            }
-        }
-        else if (index == 6)
-        {
-            if (change < 0)
-            {
-                if (change - cookies[5] < 0)
-                {
-                    change = cookies[5];
-                }
+        //}else if(index == 2)
+        //{
+        //    if (change < 0)
+        //    {
+        //        if (change - cookies[1] < 0)
+        //        {
+        //            change = cookies[1];
+        //        }
+        //        cookies[1] -= change;
+        //    }
+        //    else if (change > 0)
+        //    {
+        //        cookies[1] += change;
+        //    }
+        //}
+        //else if (index == 3)
+        //{
+        //    if (change < 0)
+        //    {
+        //        if (change - cookies[2] < 0)
+        //        {
+        //            change = cookies[2];
+        //        }
+        //        cookies[2] -= change;
+        //    }
+        //    else if (change > 0)
+        //    {
+        //        cookies[2] += change;
+        //    }
+        //}
+        //else if (index == 4)
+        //{
+        //    if (change < 0)
+        //    {
+        //        if (change - cookies[3] < 0)
+        //        {
+        //            change = cookies[3];
+        //        }
+        //        cookies[3] -= change;
+        //    }
+        //    else if (change > 0)
+        //    {
+        //        cookies[3] += change;
+        //    }
+        //}
+        //else if (index == 5)
+        //{
+        //    if (change < 0)
+        //    {
+        //        if (change - cookies[4] < 0)
+        //        {
+        //            change = cookies[4];
+        //        }
+        //        cookies[4] -= change;
+        //    }
+        //    else if (change > 0)
+        //    {
+        //        cookies[4] += change;
+        //    }
+        //}
+        //else if (index == 6)
+        //{
+        //    if (change < 0)
+        //    {
+        //        if (change - cookies[5] < 0)
+        //        {
+        //            change = cookies[5];
+        //        }
 
-                cookies[5] -= change;
-            }
-            else if (change > 0)
-            {
-                cookies[5] += change;
-            }
-        }
-
-        else
-        {
-            print("Number is not in reference to inventory list");
-        }
+        //        cookies[5] -= change;
+        //    }
+        //    else if (change > 0)
+        //    {
+        //        cookies[5] += change;
+        //    }
+        //}
 
         if (index >= 1 && index <= 6)
         {
+            if (change < 0)
+            {
+                if (cookies[index - 1] + change < 0) // cookies[x] is positive, change is negative, positive plus negative means subtraction
+                {
+                    change = -(cookies[index - 1]); // Changes change to be whatever the inventory total is, making change a positive number
+                    cookies[index - 1] = 0; // This should always equal zero
+                }
+                else
+                {
+                    cookies[index - 1] += change; // Change here is still negative, adding it to the inventory will result in a smaller number, but will still be greater than zero
+                }  
+            }
+            else if (change >= 0)
+            {
+                cookies[index - 1] += change; // Gaining inventory. Just add it on
+            }
             bank = price[index - 1] * change;
-            _bankSend.UpdateBank(bank);
+            UpdateBank();
         }
         else if (index == 7)
         {
             bank = change;
-            _bankSend.UpdateBank(bank);
+            UpdateBank();
         }
+        else
+        {
+            print("Number is not in reference to inventory list");
+        }
+    }
+
+    public void UpdateBank()
+    {
+        currentBank += bank;
+        bankText.text = "Money: $" + bank.ToString();
     }
 }

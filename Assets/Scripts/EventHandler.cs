@@ -58,7 +58,7 @@ public class EventHandler : MonoBehaviour
     public void OnHouseEventNum(int eventNum)
     { // WILL NEED TO ADD DIALOGUE AND MONEY TO EVERY SCENARIO
         System.Random random = new System.Random();
-        int index = random.Next(1, 7);
+        int index = random.Next(1, 8);
         int change;
 
         if (eventNum >= 1 && eventNum <= 40) //Standard Sale of a single cookie
@@ -108,17 +108,21 @@ public class EventHandler : MonoBehaviour
 
     public void OnRandEventNum(int eventNum)
     {
+        System.Random random = new System.Random();
+        int index = random.Next(1, 8);
+        int change;
+
         if (eventNum <= 1 && eventNum >= 5) // You find money on the ground
         {
             _inventory.ChangeValue(7, 10);
         }
-        else if(eventNum == 2)
+        else if(eventNum >= 6 && eventNum <= 15) // You find slightly less money on the ground
         {
-            //Event 2
+            _inventory.ChangeValue(7, 5);
         }
-        else if (eventNum == 3)
+        else if (eventNum >= 16 && eventNum <= 25) // Someone steals a box of cookies
         {
-            //Event 2
+            
         }
         else if (eventNum == 4)
         {
@@ -130,6 +134,8 @@ public class EventHandler : MonoBehaviour
         }
 
     }
+
+
 }
 
 //gives a reference to the sending object
