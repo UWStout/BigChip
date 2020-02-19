@@ -8,19 +8,19 @@ public class PlayerChoice : MonoBehaviour
 {
     public static Button Choice;
     public static Button Other;
-    public bool user;
+    public static bool user;
     public static bool isActive;
 
     void Start()
     { 
         Button btn = Choice.GetComponent<Button>();
-        btn.onClick.AddListener(TaskOnClick);
+        btn.onClick.AddListener(OnMouseDown);
         Choice.transform.gameObject.SetActive(false);
         Other.transform.gameObject.SetActive(false);
         isActive = false;
     }
 
-    void TaskOnClick()
+    void OnMouseDown()
     {
         if (Choice.name == "Confirm Button")
         {
@@ -38,8 +38,8 @@ public class PlayerChoice : MonoBehaviour
         isActive = false;
     }
 
-    public bool ReturnUserInput()
+    public static bool ReturnUserInput()
     {
-        return user;
+        return PlayerChoice.user;
     }
 }
