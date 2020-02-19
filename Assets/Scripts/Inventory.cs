@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
     public int[] cookies = new int[6];
     public int[] price = new int[6];
     public int bank;
+    public int totalevents = 0;
 
     public Text bankText;
     private int currentBank;
@@ -31,6 +32,109 @@ public class Inventory : MonoBehaviour
         bankText.text = "Money: $" + bank.ToString();
     }
 
+    public void GenNumber()
+    {
+        System.Random random = new System.Random();
+        int eventNum = random.Next(1, 101); // The end number is the first digit that doesn't get included in the randomizer, so this is 1 to 100
+        totalevents += 1;
+
+        if (totalevents < 11)
+        {
+
+            if (totalevents % 2 == 1)
+            {
+                OnRandEventNum(eventNum);
+            }
+            else
+            {
+                OnHouseEventNum(eventNum);
+            }
+        }
+        else if (totalevents == 11)
+        {
+            // Run end of day sequence
+            // totalevents = 0;
+        }
+    }
+
+    public void OnRandEventNum(int eventNum)
+    {
+        System.Random random = new System.Random();
+        int index = random.Next(1, 8);
+        int change;
+
+        if (eventNum <= 1 && eventNum >= 5) // You find money on the ground
+        {
+            ChangeValue(7, 10);
+        }
+        else if (eventNum >= 6 && eventNum <= 15) // You find slightly less money on the ground
+        {
+            ChangeValue(7, 5);
+        }
+        else if (eventNum >= 16 && eventNum <= 25) // Someone steals a box of cookies
+        {
+            ChangeValue(8, -1);
+        }
+        else if (eventNum == 4)
+        {
+            //Event 2
+        }
+        else if (eventNum == 5)
+        {
+            //Event 2
+        }
+
+    }
+
+    public void OnHouseEventNum(int eventNum)
+    { // WILL NEED TO ADD DIALOGUE TO EVERY SCENARIO
+        System.Random random = new System.Random();
+        int index = random.Next(1, 9);
+        int change;
+
+        if (eventNum >= 1 && eventNum <= 40) //Standard Sale of a single cookie
+        {
+           change = 1;
+           ChangeValue(index, -change);
+        }
+        else if (eventNum >= 41 && eventNum <= 65) // Sale of Multiple of One Type of Cookie
+        {
+            System.Random random2 = new System.Random();
+            change = random2.Next(2, 6); // Sale of between 2 and 5 of the same cookie
+            ChangeValue(index, -change);
+        }
+        else if (eventNum >= 66 && eventNum <= 80) // Sale of Multiple Types of Cookies
+        {
+            int index2;
+            int change2;
+            System.Random random2 = new System.Random();
+            change = random2.Next(1, 4);
+            change2 = random2.Next(1, 4); // Both sales are for 1 to 3 cookies each
+            System.Random random3 = new System.Random();
+            index2 = random3.Next(1, 7);
+            while (index == index2) // Prevents the same type from being sold twice
+            {
+                index2 = random3.Next(1, 7);
+            }
+            ChangeValue(index, -change);
+            ChangeValue(index2, -change2);
+        }
+        else if (eventNum >= 81 && eventNum <= 90) // Buys one of each type of cookie
+        {
+            ChangeValue(1, -1);
+            ChangeValue(2, -1);
+            ChangeValue(3, -1);
+            ChangeValue(4, -1);
+            ChangeValue(5, -1);
+            ChangeValue(6, -1);
+        }
+        else if (eventNum >= 91 && eventNum <= 100) // You get a tip with your standard delivery
+        {
+            ChangeValue(index, -1);
+            ChangeValue(7, 7); // $7 dollar tip. Sends to a unique index reference which doesn't affect inventory.
+        }
+
+    }
 
     // IMPORTANT NOTE 
     // The index goes from 1-6 in reference to the 6 elements in our list
@@ -40,7 +144,7 @@ public class Inventory : MonoBehaviour
     // error msg will print if an index is too high
     public void ChangeValue(int index, int change)
     {
-        if (index >= 1 && index <= 6)
+        if (index >= 1 && index <= 6) // General sale events
         {
             if (change < 0)
             {
@@ -63,10 +167,28 @@ public class Inventory : MonoBehaviour
             }
             UpdateInventory();
         }
-        else if (index == 7)
+        else if (index == 7) // Change in money only event
         {
             bank = change;
             UpdateBank();
+        }
+        else if (index == 8) // Stolen / Lost inventory event
+        {
+            System.Random random = new System.Random();
+            int stolen = random.Next(1, 7);
+            while (stolen != 0)
+            {
+                if (cookies[stolen - 1] <= 0)
+                {
+                    stolen = random.Next(1, 7);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            cookies[stolen - 1] += change;
+            UpdateInventory();
         }
         else
         {
@@ -74,13 +196,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UpdateBank()
+    public void UpdateBank() // Updates the total money the player has after any event involving money
     {
         currentBank += bank;
         bankText.text = "Money: $" + currentBank.ToString();
     }
 
-    public void UpdateInventory()
+    public void UpdateInventory() // Updates the total inventory the player has after any event involving inventory
     {
         cookie1.text = cookies[0].ToString();
         cookie2.text = cookies[1].ToString();
