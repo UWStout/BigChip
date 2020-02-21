@@ -64,6 +64,7 @@ public class Inventory : MonoBehaviour
     public void OnRandEventNum(int eventNum)
     {
         System.Random random = new System.Random();
+
         int index = random.Next(1, 7);
         bool choice;
 
