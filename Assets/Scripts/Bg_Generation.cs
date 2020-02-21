@@ -28,9 +28,21 @@ public class Bg_Generation : MonoBehaviour
         }
     }
 
-    private void addScene()
+    void addScene(float lastSceneX)
     {
+        int randomSceneIndex = randomSceneIndex.Range(0, availableScenes.Length);
+        randomSceneIndex = checkList(randomSceneIndex);
 
+        GameObject scene = (GameObject)Instantiate(availableScenes[randomSceneIndex]);
+        scene.SetActive(true);
+
+        Transform sky = scene.transform.Find("SkyDrop");
+        float sceneWidth = sky.GetComponent<BoxCollider2D>().size.x * sky.localScale.x;
+
+        float sceneCenter = lastSceneX + sceneWidth * 0.5f;
+
+        scene.transform.position = new Vector3(sceneCenter, 0, 0);
+        currentScenes.Add(scene);
     }
 
     private void GenerateSceneIfRequired()
@@ -71,5 +83,33 @@ public class Bg_Generation : MonoBehaviour
         {
             addScene(lastSceneX);
         }
+    }
+
+    private int checkList(int rand)
+    {
+        int returnValue = rand;
+        bool isIn = false;
+
+        for(int i = 0; i > genQueue.Length; i++)
+        {
+            if(rand == genQueue[i])
+            {
+                isIn = true;
+            }
+        }
+
+        if(isIn == true)
+        {
+            int randomSceneIndex = randomSceneIndex.Range(0, availableScenes.Length);
+            returnValue = checkList(randomSceneIndex);
+        }
+
+        for (int i = genQueue.Length-1; i > 0; i--)
+        {
+            genQueue[i] = genQueue[i - 1];
+        }
+        genQueue[0] = returnValue;
+
+        return returnValue;
     }
 }
