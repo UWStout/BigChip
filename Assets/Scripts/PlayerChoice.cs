@@ -6,10 +6,11 @@ using UnityEngine.Events;
 
 public class PlayerChoice : MonoBehaviour
 {
-    public static Button Choice;
-    public static Button Other;
-    public static bool user;
+    public Button Choice;
+    public Button Other;
+    private static bool user;
     public static bool isActive;
+    private bool decided; // camera stops
 
     void Start()
     { 
@@ -18,6 +19,7 @@ public class PlayerChoice : MonoBehaviour
         Choice.transform.gameObject.SetActive(false);
         Other.transform.gameObject.SetActive(false);
         isActive = false;
+        EventTimer.Create(TestingAction, 25f);
     }
 
     void OnMouseDown()
@@ -40,6 +42,15 @@ public class PlayerChoice : MonoBehaviour
 
     public static bool ReturnUserInput()
     {
-        return PlayerChoice.user;
+        return user;
+    }
+
+    private void TestingAction()
+    {
+
+        PlayerChoice.isActive = true;
+        Choice.transform.gameObject.SetActive(true);
+        Other.transform.gameObject.SetActive(true);
+        decided = PlayerChoice.user;
     }
 }

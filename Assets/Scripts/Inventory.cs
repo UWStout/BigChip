@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour
     {
         System.Random random = new System.Random();
         int index = random.Next(1, 8);
-        int change;
+        //int change;
 
         if (eventNum <= 1 && eventNum >= 5) // You find money on the ground
         {
@@ -91,6 +91,17 @@ public class Inventory : MonoBehaviour
         System.Random random = new System.Random();
         int index = random.Next(1, 9);
         int change;
+        bool choice;
+        // Make a long if statement for which text will display here
+
+
+
+
+
+
+
+        choice = PlayerChoice.ReturnUserInput();
+
 
         if (eventNum >= 1 && eventNum <= 40) //Standard Sale of a single cookie
         {
