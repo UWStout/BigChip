@@ -231,6 +231,8 @@ GameObject:
   - component: {fileID: 167841182}
   - component: {fileID: 167841183}
   - component: {fileID: 167841184}
+  - component: {fileID: 167841185}
+  - component: {fileID: 167841186}
   m_Layer: 0
   m_Name: Rex_Walk
   m_TagString: Untagged
@@ -246,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167841181}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -144, y: 118, z: 0}
+  m_LocalPosition: {x: -141.88, y: 108, z: 0}
   m_LocalScale: {x: 17.42316, y: 17.42316, z: 17.42316}
   m_Children: []
   m_Father: {fileID: 42625495}
@@ -300,7 +302,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &167841184
 Animator:
   serializedVersion: 3
@@ -320,6 +322,41 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &167841185
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167841181}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &167841186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167841181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a1cc3e5270f5745ab6d71e70d513c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rex: {fileID: 167841185}
+  speed: 1.5
 --- !u!1 &252288678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,6 +1924,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cookies: 080000000600000007000000050000000300000009000000
   price: 050000000a0000000a000000080000000800000005000000
+  cookie_name:
+  - chocolate chip
+  - s'mores
+  - sea salt caramel
+  - double chocolate chip
+  - snickerdoodle
+  - sugar
   bank: 0
   totalevents: 0
   bankText: {fileID: 1869356181}
@@ -1908,6 +1952,7 @@ GameObject:
   - component: {fileID: 964880492}
   - component: {fileID: 964880491}
   - component: {fileID: 964880494}
+  - component: {fileID: 964880495}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1997,6 +2042,19 @@ MonoBehaviour:
   - {fileID: 1254978890}
   - {fileID: 810181434}
   choke: 0.25
+--- !u!114 &964880495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964880490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96af7cc659026049818f22c36421121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 167841181}
 --- !u!1 &1061917390
 GameObject:
   m_ObjectHideFlags: 0
