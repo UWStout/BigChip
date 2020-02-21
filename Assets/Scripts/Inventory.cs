@@ -64,12 +64,17 @@ public class Inventory : MonoBehaviour
     public void OnRandEventNum(int eventNum)
     {
         System.Random random = new System.Random();
+<<<<<<< HEAD
 
         int index = random.Next(1, 8);
 
        // int index = random.Next(1, 7);
         bool choice;
 
+=======
+        int index = random.Next(1, 7);
+        bool choice;
+>>>>>>> a483de7f9020d5084a6e998efbbe34665df51aab
 
         if (eventNum <= 1 && eventNum >= 5) // You find money on the ground
         {
