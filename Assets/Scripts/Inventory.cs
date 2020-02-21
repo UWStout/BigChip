@@ -189,9 +189,9 @@ public class Inventory : MonoBehaviour
             }
             displayMessage.text = " ";
         }
-        else if (eventNum >= 51 && eventNum <= 80) // Standard sale of a cookie
+        else if (eventNum >= 51 && eventNum <= 85) // Standard sale of a cookie
         {
-            displayMessage.text = "Hi, you wouldn't happen to have a spare " + cookies[index - 1] + " cookie I could buy, would you?".ToString();
+            displayMessage.text = "Hi, you wouldn't happen to have a spare " + cookie_name[index - 1] + " cookie I could buy, would you?".ToString();
             choice = PlayerChoice.ReturnUserInput();
             if (choice == true && cookies[index - 1] > 0)
             {
@@ -203,9 +203,21 @@ public class Inventory : MonoBehaviour
                 displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the request.".ToString();
             }
         }
-        else if (eventNum >= 81 && eventNum <= 95)
+        else if (eventNum >= 86 && eventNum <= 100) // Sale of Multiple of one Cookie
         {
-
+            System.Random random2 = new System.Random();
+            int change = random2.Next(2, 6); // Sale of between 2 and 5 of the same cookie
+            displayMessage.text = "Hi, could I buy " + change + " " + cookie_name[index - 1] + " cookies from you?".ToString();
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true && cookies[index - 1] >= change)
+            {
+                ChangeValue(index, -change);
+                displayMessage.text = " ";
+            }
+            else if (choice == true && cookies[index - 1] < change)
+            {
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the request.".ToString();
+            }
         }
     }
 
