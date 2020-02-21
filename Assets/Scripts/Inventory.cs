@@ -79,6 +79,7 @@ public class Inventory : MonoBehaviour
             {
                 ChangeValue(7, 10);
             }
+            displayMessage.text = " ";
         }
         else if (eventNum >= 6 && eventNum <= 15) // You find slightly less money on the ground
         {
@@ -88,41 +89,127 @@ public class Inventory : MonoBehaviour
             {
                 ChangeValue(7, 5);
             }
+            displayMessage.text = " ";
         }
-
-        // RESUME HERE ----------------------------------------
-
-        else if (eventNum >= 16 && eventNum <= 25) // Someone steals a box of cookies
+        else if (eventNum >= 16 && eventNum <= 25) // Someone steals a cookie
         {
-            ChangeValue(8, -1);
+            displayMessage.text = "Hey, kid. Those are some tasty looking cookies you got there. Why don't you hand one over...".ToString();
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true)
+            {
+                ChangeValue(8, -1);
+            }
+            else if (choice == false) // You should've clicked confirm. Now you lose cookie and money
+            {
+                ChangeValue(8, -1);
+                ChangeValue(7, -10);
+            }
+            displayMessage.text = " ";
         }
-        else if (eventNum >= 26 && eventNum <= 40) // Another delivery person is done for the day and gives you some extra stock
+        else if (eventNum >= 26 && eventNum <= 40) // Gain inventory from another deliveryman
         {
-            System.Random how_many = new System.Random();
-            System.Random how_much = new System.Random();
-            int extra_stock = how_many.Next(1, 4); // Maximum three types of inventory gained
-            if (extra_stock == 1)
+            displayMessage.text = "Hello there, fellow delivery dino! I'm done for the day, so do you want to take my unsold cookies?".ToString();
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true)
             {
-                int change = how_much.Next(1, 5);
-                ChangeValue(9, change);
+                System.Random how_many = new System.Random();
+                System.Random which_kind = new System.Random();
+                int extra_stock = how_many.Next(1, 4); // Maximum three types of inventory gained
+                if (extra_stock == 1)
+                {
+                    int change = which_kind.Next(1, 7);
+                    ChangeValue(9, change);
+                }
+                else if (extra_stock == 2)
+                {
+                    int change = which_kind.Next(1, 7);
+                    int change2 = which_kind.Next(1, 7);
+                    while (change != 0)
+                    {
+                        if (change == change2)
+                        {
+                            change2 = which_kind.Next(1, 7);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    ChangeValue(9, change);
+                    ChangeValue(9, change2);
+                }
+                else if (extra_stock == 3)
+                {
+                    int change = which_kind.Next(1, 7);
+                    int change2 = which_kind.Next(1, 7);
+                    int change3 = which_kind.Next(1, 7);
+                    while (change != 0)
+                    {
+                        if (change == change2)
+                        {
+                            change2 = which_kind.Next(1, 7);
+                        }
+                        else if (change == change3)
+                        {
+                            change3 = which_kind.Next(1, 7);
+                        }
+                        else if (change2 == change3)
+                        {
+                            change3 = which_kind.Next(1, 7);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    ChangeValue(9, change);
+                    ChangeValue(9, change2);
+                    ChangeValue(9, change3);
+                }
             }
-            else if (extra_stock == 2)
-            {
-                int change = how_much.Next(1, 5);
-                int change2 = how_much.Next(1, 5);
-                ChangeValue(9, change);
-                ChangeValue(9, change2);
-            }
-            else if (extra_stock == 3)
-            {
-
-            }
+            displayMessage.text = " ";
         }
-        else if (eventNum == 5)
+        else if (eventNum >= 41 && eventNum <= 50) // A little kid politely asks for a cookie, but he doesn't have any money
         {
-            //Event 2
+            displayMessage.text = "Hi, Mister Deliveryman, could I have a cookie, please? I don't have any money, though...".ToString();
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true)
+            {
+                System.Random random2 = new System.Random();
+                int type = random2.Next(1, 7);
+                while (type != 0)
+                {
+                    if (cookies[type - 1] < 1)
+                    {
+                        type = random2.Next(1, 7);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                ChangeValue(8, -1);
+            }
+            displayMessage.text = " ";
         }
+        else if (eventNum >= 51 && eventNum <= 80) // Standard sale of a cookie
+        {
+            displayMessage.text = "Hi, you wouldn't happen to have a spare " + cookies[index - 1] + " cookie I could buy, would you?".ToString();
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true && cookies[index - 1] > 0)
+            {
+                ChangeValue(index, -1);
+                displayMessage.text = " ";
+            }
+            else if (choice == true && cookies[index - 1] <= 0)
+            {
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the request.".ToString();
+            }
+        }
+        else if (eventNum >= 81 && eventNum <= 95)
+        {
 
+        }
     }
 
     public void OnHouseEventNum(int eventNum)
@@ -143,7 +230,7 @@ public class Inventory : MonoBehaviour
             }
             else if (choice == true && cookies[index - 1] <= 0)
             {
-                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order".ToString();
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
             //else if (choice == false)
             //{
@@ -163,7 +250,7 @@ public class Inventory : MonoBehaviour
             }
             else if (choice == true && cookies[index - 1] < change)
             {
-                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order".ToString();
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
         }
         else if (eventNum >= 66 && eventNum <= 80) // Sale of Multiple Types of Cookies
@@ -196,7 +283,7 @@ public class Inventory : MonoBehaviour
             }
             else if (choice == true && (cookies[index - 1] < change || cookies[index2 - 1] < change2))
             {
-                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order".ToString();
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
         }
         else if (eventNum >= 81 && eventNum <= 90)
@@ -215,7 +302,7 @@ public class Inventory : MonoBehaviour
             }
             else if (choice == true && (cookies[0] < 1 || cookies[1] < 1 || cookies[2] < 1 || cookies[3] < 1 || cookies[4] < 1 || cookies[5] < 1))
             {
-                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order".ToString();
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
         }
         else if (eventNum >= 91 && eventNum <= 100)
@@ -230,7 +317,7 @@ public class Inventory : MonoBehaviour
             }
             else if (choice == true && cookies[index - 1] <= 0)
             {
-                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order".ToString();
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
         }
     }
@@ -257,24 +344,27 @@ public class Inventory : MonoBehaviour
         else if (index == 8) // Stolen / Lost inventory event
         {
             System.Random random = new System.Random();
-            int stolen = random.Next(1, 7);
-            while (stolen != 0)
+            int lost = random.Next(1, 7);
+            while (lost != 0)
             {
-                if (cookies[stolen - 1] <= 0)
+                if (cookies[lost - 1] <= 0)
                 {
-                    stolen = random.Next(1, 7);
+                    lost = random.Next(1, 7);
                 }
                 else
                 {
                     break;
                 }
             }
-            cookies[stolen - 1] += change;
+            cookies[lost - 1] += change;
             UpdateInventory();
         }
         else if (index == 9) // Gained inventory, but money was not involved
         {
-
+            System.Random random = new System.Random();
+            int gained = random.Next(1, 4);
+            cookies[change - 1] += gained;
+            UpdateInventory();
         }
         else
         {
