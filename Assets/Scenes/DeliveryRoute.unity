@@ -1793,13 +1793,14 @@ MonoBehaviour:
   cookies: 080000000600000007000000050000000300000009000000
   price: 050000000a0000000a000000080000000800000005000000
   bank: 0
+  totalevents: 0
   bankText: {fileID: 1869356181}
-  cookie1: {fileID: 0}
-  cookie2: {fileID: 0}
-  cookie3: {fileID: 0}
-  cookie4: {fileID: 0}
-  cookie5: {fileID: 0}
-  cookie6: {fileID: 0}
+  cookie1: {fileID: 1771043588}
+  cookie2: {fileID: 2114864563}
+  cookie3: {fileID: 579584316}
+  cookie4: {fileID: 1810749504}
+  cookie5: {fileID: 1723963976}
+  cookie6: {fileID: 1693573163}
 --- !u!1 &964880490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,7 +1896,6 @@ GameObject:
   - component: {fileID: 1061917394}
   - component: {fileID: 1061917393}
   - component: {fileID: 1061917392}
-  - component: {fileID: 1061917391}
   m_Layer: 5
   m_Name: All the UI Goes Here
   m_TagString: Untagged
@@ -1903,18 +1903,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1061917391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061917390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 104ec18dfb84b1942a2c10c99f5b81eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1061917392
 MonoBehaviour:
   m_ObjectHideFlags: 0

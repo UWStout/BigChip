@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public int[] cookies = new int[6];
     public int[] price = new int[6];
+    public string[] cookie_name = new string[6]{"chocolate chip", "s'mores", "sea salt caramel", "double chocolate chip", "snickerdoodle", "sugar" };
     public int bank;
     public int totalevents = 0;
 
@@ -61,7 +62,7 @@ public class Inventory : MonoBehaviour
     {
         System.Random random = new System.Random();
         int index = random.Next(1, 8);
-        int change;
+        
 
         if (eventNum <= 1 && eventNum >= 5) // You find money on the ground
         {
@@ -75,9 +76,27 @@ public class Inventory : MonoBehaviour
         {
             ChangeValue(8, -1);
         }
-        else if (eventNum == 4)
+        else if (eventNum >= 26 && eventNum <= 40) // Another delivery person is done for the day and gives you some extra stock
         {
-            //Event 2
+            System.Random how_many = new System.Random();
+            System.Random how_much = new System.Random();
+            int extra_stock = how_many.Next(1, 4); // Maximum three types of inventory gained
+            if (extra_stock == 1)
+            {
+                int change = how_much.Next(1, 5);
+                ChangeValue(9, change);
+            }
+            else if (extra_stock == 2)
+            {
+                int change = how_much.Next(1, 5);
+                int change2 = how_much.Next(1, 5);
+                ChangeValue(9, change);
+                ChangeValue(9, change2);
+            }
+            else if (extra_stock == 3)
+            {
+
+            }
         }
         else if (eventNum == 5)
         {
@@ -189,6 +208,10 @@ public class Inventory : MonoBehaviour
             }
             cookies[stolen - 1] += change;
             UpdateInventory();
+        }
+        else if (index == 9) // Gained inventory, but money was not involved
+        {
+
         }
         else
         {
