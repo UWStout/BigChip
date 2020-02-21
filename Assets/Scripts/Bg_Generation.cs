@@ -4,64 +4,72 @@ using UnityEngine;
 
 public class Bg_Generation : MonoBehaviour
 {
-    public GameObject[] levels;
+    public GameObject[] availableScenes;
+    public List<GameObject> currentScenes; 
     private Camera mainCamera;
     private Vector2 screenBounds;
-    public float choke;
+    private float choke;
+    public int[] genQueue = new int[5];
 
     void Start()
     {
         mainCamera = gameObject.GetComponent<Camera>();
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-        foreach (GameObject obj in levels)
+        StartCoroutine(GeneratorCheck());
+        choke = 38.0f;
+    }
+
+    private IEnumerator GeneratorCheck()
+    {
+        while (true)
         {
-            loadChildObjects(obj);
+            GenerateSceneIfRequired();
+            yield return new WaitForSeconds(0.25f);
         }
+    }
+
+    private void addScene()
+    {
 
     }
 
-    void loadChildObjects(GameObject obj)
+    private void GenerateSceneIfRequired()
     {
-        float objectWidth = obj.GetComponent<SpriteRenderer>().bounds.size.x - choke;
-        int childsNeeded = (int)Mathf.Ceil(screenBounds.x * 2 / objectWidth);
-        GameObject clone = Instantiate(obj) as GameObject;
-        for(int i =0; i <= childsNeeded; i++)
+        List<GameObject> scenesToRemove = new List<GameObject>();
+        bool addScene = true;
+        float playerX = transform.position.x;
+        float removeSceneX = playerX - choke;
+        float addSceneX = playerX + choke;
+        float lastSceneX = 0;
+        foreach(var scene in currentScenes)
         {
-            GameObject c = Instantiate(clone) as GameObject;
-            c.transform.SetParent(obj.transform);
-            c.transform.position = new Vector3(objectWidth * i, obj.transform.position.y, obj.transform.position.z);
-            c.name = obj.name + i;
-        }
-        Destroy(clone);
-        Destroy(obj.GetComponent<SpriteRenderer>());
-    }
+            Transform sky = scene.transform.Find("SkyDrop");
+            float sceneWidth = sky.GetComponent<BoxCollider2D>().size.x * sky.localScale.x;
+            float sceneStartX = scene.transform.position.x - (sceneWidth * 0.5f);
+            float sceneEndX = sceneStartX + sceneWidth;
 
-    void repositionChildObjects(GameObject obj)
-    {
-        Transform[] children = obj.GetComponentsInChildren<Transform>();
-        if (children.Length > 1)
-        {
-            GameObject firstChild = children[1].gameObject;
-            GameObject lastChild = children[children.Length - 1].gameObject;
-            float halfObjectWidth = lastChild.GetComponent<SpriteRenderer>().bounds.extents.x - choke;
-            if(transform.position.x + screenBounds.x > lastChild.transform.position.x + halfObjectWidth)
+            if (sceneStartX > addSceneX)
             {
-                firstChild.transform.SetAsLastSibling();
-                firstChild.transform.position = new Vector3(lastChild.transform.position.x + halfObjectWidth * 2, lastChild.transform.position.y, lastChild.transform.position.z);
+                addScene = false;
             }
-            else if (transform.position.x - screenBounds.x < firstChild.transform.position.x - halfObjectWidth)
-            {
-                lastChild.transform.SetAsFirstSibling();
-                lastChild.transform.position = new Vector3(firstChild.transform.position.x - halfObjectWidth * 2, firstChild.transform.position.y, firstChild.transform.position.z);
-            }
-        }
-    }
 
-    void LateUpdate()
-    {
-        foreach(GameObject obj in levels)
+            if (sceneStartX < addSceneX)
+            {
+                scenesToRemove.Add(scene);
+            }
+
+            lastSceneX = Mathf.Max(lastSceneX, sceneEndX);
+        }
+
+        foreach (var scene in scenesToRemove)
         {
-            repositionChildObjects(obj);
+            currentScenes.Remove(scene);
+            Destroy(scene);
+        }
+
+        if (addScene)
+        {
+            addScene(lastSceneX);
         }
     }
 }
