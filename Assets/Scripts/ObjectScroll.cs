@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scrollingparts : MonoBehaviour
+public class ObjectScroll : MonoBehaviour
 {
     public float parallaxEffect;
     public GameObject cam;
