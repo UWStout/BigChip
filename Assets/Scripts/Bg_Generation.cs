@@ -4,64 +4,112 @@ using UnityEngine;
 
 public class Bg_Generation : MonoBehaviour
 {
-    public GameObject[] levels;
+    public GameObject[] availableScenes;
+    public List<GameObject> currentScenes; 
     private Camera mainCamera;
     private Vector2 screenBounds;
-    public float choke;
+    private float choke;
+    public int[] genQueue = new int[5];
 
     void Start()
     {
         mainCamera = gameObject.GetComponent<Camera>();
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-        foreach (GameObject obj in levels)
-        {
-            loadChildObjects(obj);
-        }
-
+        StartCoroutine(GeneratorCheck());
+        choke = 38.0f;
     }
 
-    void loadChildObjects(GameObject obj)
+    private IEnumerator GeneratorCheck()
     {
-        float objectWidth = obj.GetComponent<SpriteRenderer>().bounds.size.x - choke;
-        int childsNeeded = (int)Mathf.Ceil(screenBounds.x * 2 / objectWidth);
-        GameObject clone = Instantiate(obj) as GameObject;
-        for(int i =0; i <= childsNeeded; i++)
+        while (true)
         {
-            GameObject c = Instantiate(clone) as GameObject;
-            c.transform.SetParent(obj.transform);
-            c.transform.position = new Vector3(objectWidth * i, obj.transform.position.y, obj.transform.position.z);
-            c.name = obj.name + i;
+            GenerateSceneIfRequired();
+            yield return new WaitForSeconds(0.25f);
         }
-        Destroy(clone);
-        Destroy(obj.GetComponent<SpriteRenderer>());
     }
 
-    void repositionChildObjects(GameObject obj)
+    void addScene(float lastSceneX)
     {
-        Transform[] children = obj.GetComponentsInChildren<Transform>();
-        if (children.Length > 1)
+        int randomSceneIndex = randomSceneIndex.Range(0, availableScenes.Length);
+        randomSceneIndex = checkList(randomSceneIndex);
+
+        GameObject scene = (GameObject)Instantiate(availableScenes[randomSceneIndex]);
+        scene.SetActive(true);
+
+        Transform sky = scene.transform.Find("SkyDrop");
+        float sceneWidth = sky.GetComponent<BoxCollider2D>().size.x * sky.localScale.x;
+
+        float sceneCenter = lastSceneX + sceneWidth * 0.5f;
+
+        scene.transform.position = new Vector3(sceneCenter, 0, 0);
+        currentScenes.Add(scene);
+    }
+
+    private void GenerateSceneIfRequired()
+    {
+        List<GameObject> scenesToRemove = new List<GameObject>();
+        bool addScene = true;
+        float playerX = transform.position.x;
+        float removeSceneX = playerX - choke;
+        float addSceneX = playerX + choke;
+        float lastSceneX = 0;
+        foreach(var scene in currentScenes)
         {
-            GameObject firstChild = children[1].gameObject;
-            GameObject lastChild = children[children.Length - 1].gameObject;
-            float halfObjectWidth = lastChild.GetComponent<SpriteRenderer>().bounds.extents.x - choke;
-            if(transform.position.x + screenBounds.x > lastChild.transform.position.x + halfObjectWidth)
+            Transform sky = scene.transform.Find("SkyDrop");
+            float sceneWidth = sky.GetComponent<BoxCollider2D>().size.x * sky.localScale.x;
+            float sceneStartX = scene.transform.position.x - (sceneWidth * 0.5f);
+            float sceneEndX = sceneStartX + sceneWidth;
+
+            if (sceneStartX > addSceneX)
             {
-                firstChild.transform.SetAsLastSibling();
-                firstChild.transform.position = new Vector3(lastChild.transform.position.x + halfObjectWidth * 2, lastChild.transform.position.y, lastChild.transform.position.z);
+                addScene = false;
             }
-            else if (transform.position.x - screenBounds.x < firstChild.transform.position.x - halfObjectWidth)
+
+            if (sceneStartX < addSceneX)
             {
-                lastChild.transform.SetAsFirstSibling();
-                lastChild.transform.position = new Vector3(firstChild.transform.position.x - halfObjectWidth * 2, firstChild.transform.position.y, firstChild.transform.position.z);
+                scenesToRemove.Add(scene);
             }
+
+            lastSceneX = Mathf.Max(lastSceneX, sceneEndX);
+        }
+
+        foreach (var scene in scenesToRemove)
+        {
+            currentScenes.Remove(scene);
+            Destroy(scene);
+        }
+
+        if (addScene)
+        {
+            addScene(lastSceneX);
         }
     }
 
-    void LateUpdate()
+    private int checkList(int rand)
     {
-        foreach(GameObject obj in levels)
+        int returnValue = rand;
+        bool isIn = false;
+
+        for(int i = 0; i > genQueue.Length; i++)
         {
-            repositionChildObjects(obj);
+            if(rand == genQueue[i])
+            {
+                isIn = true;
+            }
         }
+
+        if(isIn == true)
+        {
+            int randomSceneIndex = randomSceneIndex.Range(0, availableScenes.Length);
+            returnValue = checkList(randomSceneIndex);
+        }
+
+        for (int i = genQueue.Length-1; i > 0; i--)
+        {
+            genQueue[i] = genQueue[i - 1];
+        }
+        genQueue[0] = returnValue;
+
+        return returnValue;
     }
 }
