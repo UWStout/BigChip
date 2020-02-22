@@ -53,13 +53,13 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -173,10 +173,10 @@ TextureImporter:
       name: Rex_Walk spritesheet (1)_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 45
-        width: 1081
-        height: 810
+        x: 0
+        y: 0
+        width: 1130
+        height: 905
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,7 +184,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b02d2e2e86ed2aa4c816493dcea94d98
+      spriteID: 64e94308c1b46c542a5214aec6f55a74
       internalID: -1508168171925190988
       vertices: []
       indices: 
@@ -194,10 +194,10 @@ TextureImporter:
       name: Rex_Walk spritesheet (1)_1
       rect:
         serializedVersion: 2
-        x: 1149
-        y: 32
-        width: 1088
-        height: 832
+        x: 1130
+        y: 0
+        width: 1130
+        height: 905
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,7 +205,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a51a92937cf7fa40bf70ede9ab9071f
+      spriteID: 8acb16d29babe874aabf30e1f41e805f
       internalID: -900987368992263489
       vertices: []
       indices: 
@@ -215,10 +215,10 @@ TextureImporter:
       name: Rex_Walk spritesheet (1)_2
       rect:
         serializedVersion: 2
-        x: 2285
-        y: 44
-        width: 1086
-        height: 805
+        x: 2260
+        y: 0
+        width: 1130
+        height: 905
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,7 +226,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00254adda433dd4438ab3f8e5cd17964
+      spriteID: 71a224a48cf768f46808510e27ce5ac4
       internalID: -334703561494263877
       vertices: []
       indices: 
@@ -236,10 +236,10 @@ TextureImporter:
       name: Rex_Walk spritesheet (1)_3
       rect:
         serializedVersion: 2
-        x: 3416
-        y: 45
-        width: 1085
-        height: 812
+        x: 3390
+        y: 0
+        width: 1130
+        height: 905
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,7 +247,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc350469a43e0574091941452b5a62d2
+      spriteID: b275f0d1a1fcc864fbfb7996442474ec
       internalID: -6192424855558140303
       vertices: []
       indices: 
