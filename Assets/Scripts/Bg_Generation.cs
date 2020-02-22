@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bg_Generation : MonoBehaviour
 {
     public GameObject[] availableScenes;
-    public List<GameObject> currentScenes; 
+    private List<GameObject> currentScenes; 
     private Camera mainCamera;
     private Vector2 screenBounds;
     private float choke;
@@ -28,9 +28,9 @@ public class Bg_Generation : MonoBehaviour
         }
     }
 
-    void addScene(float lastSceneX)
+    void addScenes(float lastSceneX)
     {
-        int randomSceneIndex = randomSceneIndex.Range(0, availableScenes.Length);
+        int randomSceneIndex = Random.Range(0, availableScenes.Length);
         randomSceneIndex = checkList(randomSceneIndex);
 
         GameObject scene = (GameObject)Instantiate(availableScenes[randomSceneIndex]);
@@ -81,7 +81,7 @@ public class Bg_Generation : MonoBehaviour
 
         if (addScene)
         {
-            addScene(lastSceneX);
+            addScenes(lastSceneX);
         }
     }
 
@@ -100,7 +100,7 @@ public class Bg_Generation : MonoBehaviour
 
         if(isIn == true)
         {
-            int randomSceneIndex = randomSceneIndex.Range(0, availableScenes.Length);
+            int randomSceneIndex = Random.Range(0, availableScenes.Length);
             returnValue = checkList(randomSceneIndex);
         }
 
