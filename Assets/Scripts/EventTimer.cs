@@ -5,7 +5,6 @@ using UnityEngine;
 
 
 
-
 public class EventTimer
 {
     public static EventTimer Create(Action action, float timer)
@@ -33,7 +32,6 @@ public class EventTimer
     private float timer;
     private float pauseTimer = 0f;
     private bool isFinished;
-    
 
     private EventTimer(Action action, float timer)
     {
@@ -54,6 +52,7 @@ public class EventTimer
                     action();
                     EndEvents(numOfEvents);
                 }
+            
         }
         
     }
