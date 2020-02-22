@@ -42,22 +42,13 @@ public class Inventory : MonoBehaviour
         int eventNum = random.Next(1, 101); // The end number is the first digit that doesn't get included in the randomizer, so this is 1 to 100
         totalevents += 1;
 
-        if (totalevents < 11)
+        if (totalevents % 2 == 1)
         {
-
-            if (totalevents % 2 == 1)
-            {
-                OnRandEventNum(eventNum);
-            }
-            else
-            {
-                OnHouseEventNum(eventNum);
-            }
+            OnRandEventNum(eventNum);
         }
-        else if (totalevents == 11)
+        else
         {
-            // Run end of day sequence
-            // totalevents = 0;
+            OnHouseEventNum(eventNum);
         }
     }
 

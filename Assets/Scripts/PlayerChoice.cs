@@ -9,8 +9,9 @@ public class PlayerChoice : MonoBehaviour
     public Button Choice;
     public Button Other;
     private static bool user;
-    public static bool isActive;
-    private bool decided; // camera stops
+    public PlayerMovement playermovement;
+    public Inventory inventory;
+    
 
     void Start()
     { 
@@ -18,7 +19,6 @@ public class PlayerChoice : MonoBehaviour
         btn.onClick.AddListener(OnMouseDown);
         Choice.transform.gameObject.SetActive(false);
         Other.transform.gameObject.SetActive(false);
-        isActive = false;
         EventTimer.Create(TestingAction, 25f);
     }
 
@@ -37,7 +37,6 @@ public class PlayerChoice : MonoBehaviour
 
         Choice.transform.gameObject.SetActive(false);
         Other.transform.gameObject.SetActive(false);
-        isActive = false;
     }
 
     public static bool ReturnUserInput()
@@ -47,10 +46,10 @@ public class PlayerChoice : MonoBehaviour
 
     private void TestingAction()
     {
-
-        PlayerChoice.isActive = true;
-        Choice.transform.gameObject.SetActive(true);
-        Other.transform.gameObject.SetActive(true);
-        decided = PlayerChoice.user;
-    }
+        Choice.transform.gameObject.SetActive(true); // button selected
+        Other.transform.gameObject.SetActive(true); // button not selected
+        playermovement.IsHeMoving(); // Pauses him
+        inventory.GenNumber(); // Runs all the events
+        playermovement.IsHeMoving(); // Makes him move again
+     }
 }
