@@ -4,25 +4,13 @@ using UnityEngine;
 
 public class ObjectScroll : MonoBehaviour
 {
-    public float parallaxEffect;
-    public GameObject cam;
-    private float length, startpos;
-
-
-    private void Start()
+    private void OnBecameInvisible()
     {
-        startpos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        Debug.Log("I'm gone");
     }
 
-    private void FixedUpdate()
+    private void OnBecameVisible()
     {
-        float dist = (cam.transform.position.x * parallaxEffect);
-        float temp = (cam.transform.position.x * (1 - parallaxEffect));
-        transform.position = new Vector3((startpos + dist) * 5, transform.position.y, transform.position.z);
-
-        if (temp > startpos + length) startpos += length;
-        else if (temp < startpos - length) startpos -= length;
+        Debug.Log("I'm seen");
     }
-
 }
