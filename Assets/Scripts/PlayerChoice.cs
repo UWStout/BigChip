@@ -19,7 +19,7 @@ public class PlayerChoice : MonoBehaviour
         btn.onClick.AddListener(OnMouseDown);
         Choice.transform.gameObject.SetActive(false);
         Other.transform.gameObject.SetActive(false);
-        EventTimer.Create(TestingAction, 25f);
+        EventTimer.Create(TestingAction, 5f);
     }
 
     void OnMouseDown()
