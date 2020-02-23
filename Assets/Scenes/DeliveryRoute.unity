@@ -2317,6 +2317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 75
   rex: {fileID: 261060410}
+  anim: {fileID: 261060409}
 --- !u!50 &964880495
 Rigidbody2D:
   serializedVersion: 4
