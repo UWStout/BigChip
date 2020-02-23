@@ -37,6 +37,7 @@ public class PlayerChoice : MonoBehaviour
 
         //restarts the event timer
         timer.currentCoroutine = timer.StartCoroutine(timer.TriggerEvent());
+        playermovement.IsHeMoving(); // Makes him move again
     }
 
     public static bool ReturnUserInput()
@@ -49,6 +50,5 @@ public class PlayerChoice : MonoBehaviour
         numOfEvents += 1;
         playermovement.IsHeMoving(); // Pauses him
         inventory.GenNumber(); // Runs all the events
-        playermovement.IsHeMoving(); // Makes him move again
     }
 }

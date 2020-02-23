@@ -43,12 +43,12 @@ public class Inventory : MonoBehaviour
 
         if (totalevents % 2 == 1)
         {
-            Debug.Log(eventNum);
+           // Debug.Log("mi hoy minoy");
             OnRandEventNum(eventNum);            
         }
         else
         {
-            Debug.Log(eventNum);
+            //Debug.Log("leedle leedle lee");
             OnHouseEventNum(eventNum);
         }
     }

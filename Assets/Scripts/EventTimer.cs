@@ -6,7 +6,7 @@ using UnityEngine;
 public class EventTimer : MonoBehaviour
 {
     public PlayerChoice button1;
-    //public PlayerChoice button2;
+    
 
     [Range(3, 15)]
     public float waitTime;
@@ -19,12 +19,9 @@ public class EventTimer : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(waitTime); //wait for time then continue
-            Debug.Log("An Event would trigger now");
+           // Debug.Log("An Event would trigger now");
             button1.Choice.transform.gameObject.SetActive(true);
             button1.Other.transform.gameObject.SetActive(true);
-            //button2.Choice.transform.gameObject.SetActive(true);
-            //button2.Other.transform.gameObject.SetActive(true);
-            //BOTH CALLS BELOW BREAK GAME
 
             StopEvent(); 
             button1.TestingAction();
@@ -36,7 +33,7 @@ public class EventTimer : MonoBehaviour
     //time set needs to be longer than the trigger
     public void StopEvent()
     {
-        Debug.Log("New events have stopped");
+        //Debug.Log("New events have stopped");
         StopCoroutine(currentCoroutine);
     }
 
