@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour
             displayMessage.text = "Hey! Money! Take it?";
             while (choice == null)
             {
-                choice = PlayerChoice.ReturnUserInput();
+                choice = EventTimer.ReturnUserInput();
                 if (choice == true)
                 {
                     ChangeValue(7, 10);
@@ -77,7 +77,7 @@ public class Inventory : MonoBehaviour
             displayMessage.text = "Hey! Money! Take it?";
             while (choice == null)
             {
-                choice = PlayerChoice.ReturnUserInput();
+                choice = EventTimer.ReturnUserInput();
                 if (choice == true)
                 {
                     ChangeValue(7, 5);
@@ -88,7 +88,7 @@ public class Inventory : MonoBehaviour
         else if (eventNum >= 16 && eventNum <= 25) // Someone steals a cookie
         {
             displayMessage.text = "Hey, kid. Those are some tasty looking cookies you got there. Why don't you hand one over...".ToString();
-            choice = PlayerChoice.ReturnUserInput();
+            choice = EventTimer.ReturnUserInput();
             while (choice == null)
             {
                 if (choice == true)
@@ -108,7 +108,7 @@ public class Inventory : MonoBehaviour
             displayMessage.text = "Hello there, fellow delivery dino! I'm done for the day, so do you want to take my unsold cookies?".ToString();
             while (choice == null)
             {
-                choice = PlayerChoice.ReturnUserInput();
+                choice = EventTimer.ReturnUserInput();
                 if (choice == true)
                 {
                     System.Random how_many = new System.Random();
@@ -174,7 +174,7 @@ public class Inventory : MonoBehaviour
             displayMessage.text = "Hi, Mister Deliveryman, could I have a cookie, please? I don't have any money, though...".ToString();
             while (choice == null)
             {
-                choice = PlayerChoice.ReturnUserInput();
+                choice = EventTimer.ReturnUserInput();
                 if (choice == true)
                 {
                     System.Random random2 = new System.Random();
@@ -200,7 +200,7 @@ public class Inventory : MonoBehaviour
             displayMessage.text = "Hi, you wouldn't happen to have a spare " + cookie_name[index - 1] + " cookie I could buy, would you?".ToString();
             while (choice == null)
             {
-                choice = PlayerChoice.ReturnUserInput();
+                choice = EventTimer.ReturnUserInput();
                 if (choice == true && cookies[index - 1] > 0)
                 {
                     ChangeValue(index, -1);
@@ -219,7 +219,7 @@ public class Inventory : MonoBehaviour
             displayMessage.text = "Hi, could I buy " + change + " " + cookie_name[index - 1] + " cookies from you?".ToString();
             while (choice == null)
             {
-                choice = PlayerChoice.ReturnUserInput();
+                choice = EventTimer.ReturnUserInput();
                 if (choice == true && cookies[index - 1] >= change)
                 {
                     ChangeValue(index, -change);
@@ -246,7 +246,7 @@ public class Inventory : MonoBehaviour
             displayMessage.text = "Hello, I ordered one " + cookie_name[index - 1] + " cookie. Have you come to deliver it?".ToString();
             while (choice == null)
             {
-                choice = PlayerChoice.ReturnUserInput();
+                choice = EventTimer.ReturnUserInput();
                 if (choice == true && cookies[index - 1] > 0)
                 {
                     ChangeValue(index, -1);
@@ -263,7 +263,7 @@ public class Inventory : MonoBehaviour
             System.Random random2 = new System.Random();
             change = random2.Next(2, 6); // Sale of between 2 and 5 of the same cookie
             displayMessage.text = "Hello, I ordered " + change + " " + cookie_name[index - 1] + "cookies. Have you come to deliver them?".ToString();
-            choice = PlayerChoice.ReturnUserInput();
+            choice = EventTimer.ReturnUserInput();
             while (choice == null)
             {
                 if (choice == true && cookies[index - 1] >= change)
@@ -298,7 +298,7 @@ public class Inventory : MonoBehaviour
                 }
             }
             displayMessage.text = "Hello, I ordered " + change + " " + cookie_name[index - 1] + " and " + change2 + " " + cookie_name[index2 - 1] +" cookies. Have you come to deliver them?".ToString();
-            choice = PlayerChoice.ReturnUserInput();
+            choice = EventTimer.ReturnUserInput();
             while (choice == null)
             {
                 if (choice == true && cookies[index - 1] >= change && cookies[index2 - 1] >= change2)
@@ -318,7 +318,7 @@ public class Inventory : MonoBehaviour
             displayMessage.text = "Hello, I ordered one of each cookie. Have you come to deliver them?".ToString();
             while (choice == null)
             {
-                choice = PlayerChoice.ReturnUserInput();
+                choice = EventTimer.ReturnUserInput();
                 if (choice == true && cookies[0] > 0 && cookies[1] > 0 && cookies[2] > 0 && cookies[3] > 0 && cookies[4] > 0 && cookies[5] > 0)
                 {
                     ChangeValue(1, -1);
@@ -338,7 +338,7 @@ public class Inventory : MonoBehaviour
         else if (eventNum >= 91 && eventNum <= 100)
         {
             displayMessage.text = "Hello, I ordered one " + cookie_name[index - 1] + "cookie. Have you come to deliver it? I'll give you a tip if you did.".ToString();
-            choice = PlayerChoice.ReturnUserInput();
+            choice = EventTimer.ReturnUserInput();
             while (choice == null)
             {
                 if (choice == true && cookies[index - 1] > 0)
