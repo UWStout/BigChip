@@ -31,6 +31,7 @@ public class EventTimer
     private Action action;
     private float timer;
     private bool isFinished;
+    public bool dearGodStop = false;
 
     private EventTimer(Action action, float timer)
     {
@@ -41,25 +42,30 @@ public class EventTimer
 
     public void Update()
     {
-        if (!isFinished)
+        if (isFinished == false)
         {
             timer -= Time.deltaTime;
             if (timer < 0)
             {
-                //trigger action
-                action();
-                EndEvents(numOfEvents);
-            }
+                if (dearGodStop == false)
+                {
+                    dearGodStop = true;
+                    Debug.Log("How many freaking times...");
+                    //trigger action
+                    action();
+                }
+            }           
         }
     }
 
-    private void EndEvents(int numOfEvents)
+    public void EndEvents(int numOfEvents)
     {
-        if (numOfEvents == 9)
+        if (numOfEvents >= 9)
         {
             isFinished = true;
         }
-        numOfEvents++;
+        dearGodStop = false;
+        timer = 5f;
     }
 
 }
