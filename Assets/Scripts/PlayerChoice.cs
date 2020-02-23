@@ -42,7 +42,7 @@ public class PlayerChoice : MonoBehaviour
     }
 
     public static bool ReturnUserInput()
-    {
+    {  
         return user;
     }
 
