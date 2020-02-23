@@ -9,8 +9,10 @@ public class PlayerChoice : MonoBehaviour
     public Button Choice;
     public Button Other;
     private static bool user;
+    int numOfEvents;
     public PlayerMovement playermovement;
     public Inventory inventory;
+    public EventTimer eventtimer;
     
 
     void Start()
@@ -46,10 +48,12 @@ public class PlayerChoice : MonoBehaviour
 
     private void TestingAction()
     {
+        numOfEvents += 1;
         Choice.transform.gameObject.SetActive(true); // button selected
         Other.transform.gameObject.SetActive(true); // button not selected
         playermovement.IsHeMoving(); // Pauses him
         inventory.GenNumber(); // Runs all the events
+        eventtimer.EndEvents(numOfEvents);
         playermovement.IsHeMoving(); // Makes him move again
      }
 }
