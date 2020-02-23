@@ -2,19 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
-
 
 public class EventTimer : MonoBehaviour
 {
-    public Button Accept;
-    public Button Decline;
-    private static bool? user;
-    int numOfEvents;
-    public PlayerMovement playermovement;
-    public Inventory inventory;
-
+    public PlayerChoice button1;
+    //public PlayerChoice button2;
 
     [Range(3, 15)]
     public float waitTime;
@@ -28,10 +20,14 @@ public class EventTimer : MonoBehaviour
         {
             yield return new WaitForSeconds(waitTime); //wait for time then continue
             Debug.Log("An Event would trigger now");
-            Accept.transform.gameObject.SetActive(true);
-            Decline.transform.gameObject.SetActive(true);
-            //StopEvent();
-            //TestingAction();
+            button1.Choice.transform.gameObject.SetActive(true);
+            button1.Other.transform.gameObject.SetActive(true);
+            //button2.Choice.transform.gameObject.SetActive(true);
+            //button2.Other.transform.gameObject.SetActive(true);
+            //BOTH CALLS BELOW BREAK GAME
+
+            StopEvent(); 
+            button1.TestingAction();
             //function call for trigger
         }
     }
@@ -47,47 +43,6 @@ public class EventTimer : MonoBehaviour
     void Start()
     {
         currentCoroutine = StartCoroutine(TriggerEvent());
-        Button btn = Accept.GetComponent<Button>();
-        btn.onClick.AddListener(OnMouseDown);
-        Button bttn = Decline.GetComponent<Button>();
-        bttn.onClick.AddListener(OnMouseDown);
-        user = null;
     }
 
-    void OnMouseDown()
-    {
-        if (user == null)
-        {
-
-            if (Accept)
-            {
-                Debug.Log("You have chosen the Confirm option");
-                user = true;
-            }
-            else if (Decline)
-            {
-                Debug.Log("You have chosen the Reject option");
-                user = false;
-            }
-
-            Accept.transform.gameObject.SetActive(false);
-            Decline.transform.gameObject.SetActive(false);
-            user = null; // testing
-        }
-    }
-
-    public static bool? ReturnUserInput()
-    {
-        return user;
-    }
-
-    public void TestingAction()
-    {
-        numOfEvents += 1;
-        playermovement.IsHeMoving(); // Pauses him
-        inventory.GenNumber(); // Runs all the events
-        currentCoroutine = StartCoroutine(TriggerEvent()); //restarts events
-        playermovement.IsHeMoving(); // Makes him move again
-        user = null;
-    }
 }
