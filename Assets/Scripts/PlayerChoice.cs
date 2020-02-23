@@ -13,15 +13,14 @@ public class PlayerChoice : MonoBehaviour
     public PlayerMovement playermovement;
     public Inventory inventory;
     public EventTimer eventtimer;
-    
 
     void Start()
     { 
         Button btn = Choice.GetComponent<Button>();
         btn.onClick.AddListener(OnMouseDown);
+        //EventTimer.Create(TestingAction, 5f);
         Choice.transform.gameObject.SetActive(false);
         Other.transform.gameObject.SetActive(false);
-        EventTimer.Create(TestingAction, 5f);
     }
 
     void OnMouseDown()
@@ -53,7 +52,7 @@ public class PlayerChoice : MonoBehaviour
         Other.transform.gameObject.SetActive(true); // button not selected
         playermovement.IsHeMoving(); // Pauses him
         inventory.GenNumber(); // Runs all the events
-        eventtimer.EndEvents(numOfEvents);
+        //eventtimer.EndEvents(numOfEvents);
         playermovement.IsHeMoving(); // Makes him move again
      }
 }

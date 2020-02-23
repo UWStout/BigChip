@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour
     public void GenNumber()
     {
         System.Random random = new System.Random();
-        int eventNum = random.Next(1, 101); // The end number is the first digit that doesn't get included in the randomizer, so this is 1 to 100
+        int eventNum = random.Next(1, 101); 
         totalevents += 1;
 
         if (totalevents % 2 == 1)
@@ -256,10 +256,6 @@ public class Inventory : MonoBehaviour
                 {
                     displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
                 }
-                //else if (choice == false)
-                //{
-                //     Rejection message. This will need to go on every instance if we decide to do it.
-                //}
             }
         }
         else if (eventNum >= 41 && eventNum <= 65) // Sale of Multiple of One Type of Cookie
@@ -301,7 +297,7 @@ public class Inventory : MonoBehaviour
                     break;
                 }
             }
-            displayMessage.text = "Hello, I ordered " + change + " " + cookie_name[index - 1] + " and " + change2 + cookie_name[index2 - 1] +" cookies. Have you come to deliver them?".ToString();
+            displayMessage.text = "Hello, I ordered " + change + " " + cookie_name[index - 1] + " and " + change2 + " " + cookie_name[index2 - 1] +" cookies. Have you come to deliver them?".ToString();
             choice = PlayerChoice.ReturnUserInput();
             while (choice == null)
             {

@@ -2215,6 +2215,7 @@ MonoBehaviour:
   cookie5: {fileID: 1723963976}
   cookie6: {fileID: 1693573163}
   displayMessage: {fileID: 1631346944}
+  paused: 1
 --- !u!1 &964880490
 GameObject:
   m_ObjectHideFlags: 0
@@ -4212,5 +4213,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Choice: {fileID: 2146722470}
   Other: {fileID: 752147752}
-  playermovement: {fileID: 0}
-  inventory: {fileID: 0}
+  playermovement: {fileID: 964880494}
+  inventory: {fileID: 860859676}

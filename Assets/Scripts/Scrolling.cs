@@ -14,7 +14,7 @@ public class Scrolling : MonoBehaviour
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
         float dist = (cam.transform.position.x * parallaxEffect);
