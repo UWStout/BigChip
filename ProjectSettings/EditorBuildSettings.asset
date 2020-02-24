@@ -11,7 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeliveryRoute.unity
     guid: 15e57dcd94509c649beb368d2135bc2a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/LeaderBoard.unity
+    guid: ec0a5f054b638f74cb2c05748ed9bca1
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 2e9d8705be1e0d646b10d3156c235c58
   m_configObjects: {}
