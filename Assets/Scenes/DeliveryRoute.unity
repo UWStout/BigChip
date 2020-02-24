@@ -1681,7 +1681,6 @@ GameObject:
   - component: {fileID: 752147753}
   - component: {fileID: 752147752}
   - component: {fileID: 752147751}
-  - component: {fileID: 752147755}
   - component: {fileID: 752147756}
   m_Layer: 5
   m_Name: Confirm Button
@@ -1819,18 +1818,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752147749}
   m_CullTransparentMesh: 0
---- !u!114 &752147755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752147749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &752147756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2219,8 +2206,9 @@ MonoBehaviour:
   - double chocolate chip
   - snickerdoodle
   - sugar
-  bank: 0
-  totalevents: 0
+  bank: 50
+  totalevents: 15
+  player: {fileID: 964880494}
   bankText: {fileID: 1869356181}
   cookie1: {fileID: 1771043588}
   cookie2: {fileID: 2114864563}
@@ -2330,6 +2318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 75
   rex: {fileID: 261060410}
+  moving: 0
   anim: {fileID: 261060409}
 --- !u!50 &964880495
 Rigidbody2D:

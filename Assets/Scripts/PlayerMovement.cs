@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public Rigidbody2D rex;
-    bool moving;
+    public bool moving;
     public Animator anim;
 
 

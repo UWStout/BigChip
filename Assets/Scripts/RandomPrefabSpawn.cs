@@ -18,8 +18,8 @@ public class RandomPrefabSpawn : MonoBehaviour
         spawnX = (Camera.main.pixelWidth * 2) + 300f;
         spawnY1 = Camera.main.pixelHeight - 155f;
         spawnY2 = Camera.main.pixelHeight - 155f;
-        spawnY3 = Camera.main.pixelHeight - 160f;
-        spawnY4 = Camera.main.pixelHeight - 120f;
+        spawnY3 = Camera.main.pixelHeight - 150f;
+        spawnY4 = Camera.main.pixelHeight - 110f;
     }
 
     void Update()
@@ -44,7 +44,7 @@ public class RandomPrefabSpawn : MonoBehaviour
                     break;
             }
 
-            Debug.Log(prefab.transform.position.x);
+            //Debug.Log(prefab.transform.position.x);
             spawnX += 900f;
             nextSpawnDistance = Camera.main.transform.position.x + spawnX;
             nextSpawnTime = Time.time + spawnRate;

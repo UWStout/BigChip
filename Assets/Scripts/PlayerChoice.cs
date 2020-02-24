@@ -23,17 +23,18 @@ public class PlayerChoice : MonoBehaviour
     {
         if (Choice.name == "Confirm Button")
         {
-            Debug.Log("You have chosen the Confirm option");
+            //Debug.Log("You have chosen the Confirm option");
             user = true;
         }
         else if (Choice.name == "Reject Button")
         {
-            Debug.Log("You have chosen the Reject option");
+           // Debug.Log("You have chosen the Reject option");
             user = false;
         }
         //turns the buttons off
         Choice.transform.gameObject.SetActive(false);
         Other.transform.gameObject.SetActive(false);
+        inventory.displayMessage.text = "";
 
         //restarts the event timer
         timer.currentCoroutine = timer.StartCoroutine(timer.TriggerEvent());
