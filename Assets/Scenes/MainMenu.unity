@@ -388,6 +388,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3562103979841205983, guid: f888c2a5bd35a9242944ae5bac246337,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 728
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562103979841205983, guid: f888c2a5bd35a9242944ae5bac246337,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562103979841205983, guid: f888c2a5bd35a9242944ae5bac246337,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3287550569328588338, guid: f888c2a5bd35a9242944ae5bac246337,
         type: 3}
       propertyPath: m_Name
@@ -462,21 +477,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 14.335212
-      objectReference: {fileID: 0}
-    - target: {fileID: 3562103979841205983, guid: f888c2a5bd35a9242944ae5bac246337,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 728
-      objectReference: {fileID: 0}
-    - target: {fileID: 3562103979841205983, guid: f888c2a5bd35a9242944ae5bac246337,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 103
-      objectReference: {fileID: 0}
-    - target: {fileID: 3562103979841205983, guid: f888c2a5bd35a9242944ae5bac246337,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f888c2a5bd35a9242944ae5bac246337, type: 3}
@@ -663,7 +663,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 519420030}
-        m_MethodName: beginGame
+        m_MethodName: ChangeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1135,7 +1135,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 519420030}
-        m_MethodName: viewCredits
+        m_MethodName: ChangeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
