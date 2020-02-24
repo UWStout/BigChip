@@ -742,8 +742,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cookies: 
   price: 
+  cookie_name:
+  - chocolate chip
+  - s'mores
+  - sea salt caramel
+  - double chocolate chip
+  - snickerdoodle
+  - sugar
   bank: 0
-  _bankSend: {fileID: 0}
+  totalevents: 0
+  bankText: {fileID: 0}
+  cookie1: {fileID: 0}
+  cookie2: {fileID: 0}
+  cookie3: {fileID: 0}
+  cookie4: {fileID: 0}
+  cookie5: {fileID: 0}
+  cookie6: {fileID: 0}
+  displayMessage: {fileID: 0}
 --- !u!1 &2030746617
 GameObject:
   m_ObjectHideFlags: 0

@@ -1682,6 +1682,7 @@ GameObject:
   - component: {fileID: 752147752}
   - component: {fileID: 752147751}
   - component: {fileID: 752147755}
+  - component: {fileID: 752147756}
   m_Layer: 5
   m_Name: Confirm Button
   m_TagString: Untagged
@@ -1827,14 +1828,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 752147749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60c23793c0851c42aff8eaabb6bf199, type: 3}
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &752147756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752147749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777cc5df0315d564ab8e4aa147fa1d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Choice: {fileID: 752147752}
   Other: {fileID: 2146722470}
   playermovement: {fileID: 964880494}
   inventory: {fileID: 860859676}
-  eventtimer: {fileID: 0}
+  timer: {fileID: 964880496}
 --- !u!1 &754387685
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,7 +2229,6 @@ MonoBehaviour:
   cookie5: {fileID: 1723963976}
   cookie6: {fileID: 1693573163}
   displayMessage: {fileID: 1631346944}
-  paused: 1
 --- !u!1 &964880490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2230,6 +2242,7 @@ GameObject:
   - component: {fileID: 964880491}
   - component: {fileID: 964880494}
   - component: {fileID: 964880495}
+  - component: {fileID: 964880496}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2317,6 +2330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 75
   rex: {fileID: 261060410}
+  anim: {fileID: 261060409}
 --- !u!50 &964880495
 Rigidbody2D:
   serializedVersion: 4
@@ -2338,6 +2352,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &964880496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964880490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8dc74733ad47942ba412189f7778b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button1: {fileID: 752147756}
+  waitTime: 5
 --- !u!1 &965116587
 GameObject:
   m_ObjectHideFlags: 0
@@ -4263,11 +4291,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2146722467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60c23793c0851c42aff8eaabb6bf199, type: 3}
+  m_Script: {fileID: 11500000, guid: 777cc5df0315d564ab8e4aa147fa1d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Choice: {fileID: 2146722470}
   Other: {fileID: 752147752}
   playermovement: {fileID: 964880494}
   inventory: {fileID: 860859676}
-  eventtimer: {fileID: 0}
+  timer: {fileID: 964880496}
