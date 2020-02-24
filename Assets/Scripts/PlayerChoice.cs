@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerChoice : MonoBehaviour
 {
@@ -12,15 +11,12 @@ public class PlayerChoice : MonoBehaviour
     int numOfEvents;
     public PlayerMovement playermovement;
     public Inventory inventory;
-    public EventTimer eventtimer;
+    public EventTimer timer;
 
     void Start()
-    { 
+    {
         Button btn = Choice.GetComponent<Button>();
         btn.onClick.AddListener(OnMouseDown);
-        //EventTimer.Create(TestingAction, 5f);
-        Choice.transform.gameObject.SetActive(false);
-        Other.transform.gameObject.SetActive(false);
     }
 
     void OnMouseDown()
@@ -35,24 +31,24 @@ public class PlayerChoice : MonoBehaviour
             Debug.Log("You have chosen the Reject option");
             user = false;
         }
-
+        //turns the buttons off
         Choice.transform.gameObject.SetActive(false);
         Other.transform.gameObject.SetActive(false);
+
+        //restarts the event timer
+        timer.currentCoroutine = timer.StartCoroutine(timer.TriggerEvent());
+        playermovement.IsHeMoving(); // Makes him move again
     }
 
     public static bool ReturnUserInput()
-    {  
+    {
         return user;
     }
 
-    private void TestingAction()
+    public void TestingAction()
     {
         numOfEvents += 1;
-        Choice.transform.gameObject.SetActive(true); // button selected
-        Other.transform.gameObject.SetActive(true); // button not selected
         playermovement.IsHeMoving(); // Pauses him
         inventory.GenNumber(); // Runs all the events
-        //eventtimer.EndEvents(numOfEvents);
-        playermovement.IsHeMoving(); // Makes him move again
-     }
+    }
 }

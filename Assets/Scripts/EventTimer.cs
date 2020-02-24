@@ -3,81 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class EventTimer : MonoBehaviour
 {
-    IEnumerator StartCoroutine()
+    public PlayerChoice button1;
+    
+
+    [Range(3, 15)]
+    public float waitTime;
+
+    public Coroutine currentCoroutine = null;
+
+    //Should be called again after the event stops
+    public IEnumerator TriggerEvent()
     {
         while (true)
         {
+            yield return new WaitForSeconds(waitTime); //wait for time then continue
+           // Debug.Log("An Event would trigger now");
+            button1.Choice.transform.gameObject.SetActive(true);
+            button1.Other.transform.gameObject.SetActive(true);
 
+            StopEvent(); 
+            button1.TestingAction();
+            //function call for trigger
         }
     }
 
 
+    //time set needs to be longer than the trigger
+    public void StopEvent()
+    {
+        //Debug.Log("New events have stopped");
+        StopCoroutine(currentCoroutine);
+    }
 
-
-
-
-    //public static EventTimer Create(Action action, float timer)
-    //{
-    //    EventTimer EventTimer = new EventTimer(action, timer);
-
-    //    GameObject gameObject = new GameObject("EventTimer", typeof(MonoHook));
-    //    gameObject.GetComponent<MonoHook>().onUpdate = EventTimer.Update;
-
-    //    return EventTimer;
-    //}
-
-    //private class MonoHook : MonoBehaviour {
-    //    public Action onUpdate;
-    //    private void Update()
-    //    {
-    //        if (onUpdate != null) onUpdate();
-
-            
-    //    }
-    //}
-
-    //private Action action;
-    //private float timer;
-    //private bool isFinished;
-    //public bool dearGodStop = false;
-
-    //private EventTimer(Action action, float timer)
-    //{
-    //    this.action = action;
-    //    this.timer = timer;
-    //    isFinished = false;
-    //}
-
-    //public void Update()
-    //{
-    //    if (isFinished == false)
-    //    {
-    //        timer -= Time.deltaTime;
-    //        if (timer < 0)
-    //        {
-    //            if (dearGodStop == false)
-    //            {
-    //                dearGodStop = true;
-    //                Debug.Log("How many freaking times...");
-    //                //trigger action
-    //                action();
-    //            }
-    //        }      
-    //    }
-    //}
-
-    //public void EndEvents(int numOfEvents)
-    //{
-    //    if (numOfEvents >= 9)
-    //    {
-    //        isFinished = true;
-    //    }
-    //    dearGodStop = false;
-    //    timer = 5f;
-    //}
+    void Start()
+    {
+        currentCoroutine = StartCoroutine(TriggerEvent());
+    }
 
 }

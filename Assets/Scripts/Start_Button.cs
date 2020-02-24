@@ -8,4 +8,14 @@ public class Start_Button : MonoBehaviour
     {
         Application.LoadLevel(sceneName);
     }
+
+    public void viewCredits(string sceneName)
+    {
+        Application.LoadLevel(sceneName);
+    }
+
+    public void ReturnToMenu(string sceneName)
+    {
+        Application.LoadLevel(sceneName);
+    }
 }

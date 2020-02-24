@@ -22,7 +22,6 @@ public class Inventory : MonoBehaviour
     public Text cookie6;
 
     public Text displayMessage;
-    public bool paused = true;
 
     void Start()
     {
@@ -44,10 +43,12 @@ public class Inventory : MonoBehaviour
 
         if (totalevents % 2 == 1)
         {
-            OnRandEventNum(eventNum);
+           // Debug.Log("mi hoy minoy");
+            OnRandEventNum(eventNum);            
         }
         else
         {
+            //Debug.Log("leedle leedle lee");
             OnHouseEventNum(eventNum);
         }
     }
@@ -55,33 +56,27 @@ public class Inventory : MonoBehaviour
     public void OnRandEventNum(int eventNum)
     {
         System.Random random = new System.Random();
+        bool choice;
 
         int index = random.Next(1, 7);
-        bool? choice = null;
 
         if (eventNum <= 1 && eventNum >= 5) // You find money on the ground
         {
             displayMessage.text = "Hey! Money! Take it?";
-            while (choice == null)
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true)
             {
-                choice = PlayerChoice.ReturnUserInput();
-                if (choice == true)
-                {
-                    ChangeValue(7, 10);
-                }
+                ChangeValue(7, 10);
             }
             displayMessage.text = " ";
         }
         else if (eventNum >= 6 && eventNum <= 15) // You find slightly less money on the ground
         {
             displayMessage.text = "Hey! Money! Take it?";
-            while (choice == null)
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true)
             {
-                choice = PlayerChoice.ReturnUserInput();
-                if (choice == true)
-                {
-                    ChangeValue(7, 5);
-                }
+                ChangeValue(7, 5);
             }
             displayMessage.text = " ";
         }
@@ -89,82 +84,76 @@ public class Inventory : MonoBehaviour
         {
             displayMessage.text = "Hey, kid. Those are some tasty looking cookies you got there. Why don't you hand one over...".ToString();
             choice = PlayerChoice.ReturnUserInput();
-            while (choice == null)
+            if (choice == true)
             {
-                if (choice == true)
-                {
-                    ChangeValue(8, -1);
-                }
-                else if (choice == false) // You should've clicked confirm. Now you lose cookie and money
-                {
-                    ChangeValue(8, -1);
-                    ChangeValue(7, -10);
-                }
+                ChangeValue(8, -1);
+            }
+            else if (choice == false) // You should've clicked confirm. Now you lose cookie and money
+            {
+                ChangeValue(8, -1);
+                ChangeValue(7, -10);
             }
             displayMessage.text = " ";
         }
         else if (eventNum >= 26 && eventNum <= 40) // Gain inventory from another deliveryman
         {
             displayMessage.text = "Hello there, fellow delivery dino! I'm done for the day, so do you want to take my unsold cookies?".ToString();
-            while (choice == null)
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true)
             {
-                choice = PlayerChoice.ReturnUserInput();
-                if (choice == true)
+                System.Random how_many = new System.Random();
+                System.Random which_kind = new System.Random();
+                int extra_stock = how_many.Next(1, 4); // Maximum three types of inventory gained
+                if (extra_stock == 1)
                 {
-                    System.Random how_many = new System.Random();
-                    System.Random which_kind = new System.Random();
-                    int extra_stock = how_many.Next(1, 4); // Maximum three types of inventory gained
-                    if (extra_stock == 1)
+                    int change = which_kind.Next(1, 7);
+                    ChangeValue(9, change);
+                }
+                else if (extra_stock == 2)
+                {
+                    int change = which_kind.Next(1, 7);
+                    int change2 = which_kind.Next(1, 7);
+                    while (change != 0)
                     {
-                        int change = which_kind.Next(1, 7);
-                        ChangeValue(9, change);
-                    }
-                    else if (extra_stock == 2)
-                    {
-                        int change = which_kind.Next(1, 7);
-                        int change2 = which_kind.Next(1, 7);
-                        while (change != 0)
+                        if (change == change2)
                         {
-                            if (change == change2)
-                            {
-                                change2 = which_kind.Next(1, 7);
-                            }
-                            else
-                            {
-                                break;
-                            }
+                            change2 = which_kind.Next(1, 7);
                         }
-                        ChangeValue(9, change);
-                        ChangeValue(9, change2);
-                    }
-                    else if (extra_stock == 3)
-                    {
-                        int change = which_kind.Next(1, 7);
-                        int change2 = which_kind.Next(1, 7);
-                        int change3 = which_kind.Next(1, 7);
-                        while (change != 0)
+                        else
                         {
-                            if (change == change2)
-                            {
-                                change2 = which_kind.Next(1, 7);
-                            }
-                            else if (change == change3)
-                            {
-                                change3 = which_kind.Next(1, 7);
-                            }
-                            else if (change2 == change3)
-                            {
-                                change3 = which_kind.Next(1, 7);
-                            }
-                            else
-                            {
-                                break;
-                            }
+                            break;
                         }
-                        ChangeValue(9, change);
-                        ChangeValue(9, change2);
-                        ChangeValue(9, change3);
                     }
+                    ChangeValue(9, change);
+                    ChangeValue(9, change2);
+                }
+                else if (extra_stock == 3)
+                {
+                    int change = which_kind.Next(1, 7);
+                    int change2 = which_kind.Next(1, 7);
+                    int change3 = which_kind.Next(1, 7);
+                    while (change != 0)
+                    {
+                        if (change == change2)
+                        {
+                            change2 = which_kind.Next(1, 7);
+                        }
+                        else if (change == change3)
+                        {
+                            change3 = which_kind.Next(1, 7);
+                        }
+                        else if (change2 == change3)
+                        {
+                            change3 = which_kind.Next(1, 7);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    ChangeValue(9, change);
+                    ChangeValue(9, change2);
+                    ChangeValue(9, change3);
                 }
             }
             displayMessage.text = " ";
@@ -172,44 +161,38 @@ public class Inventory : MonoBehaviour
         else if (eventNum >= 41 && eventNum <= 50) // A little kid politely asks for a cookie, but he doesn't have any money
         {
             displayMessage.text = "Hi, Mister Deliveryman, could I have a cookie, please? I don't have any money, though...".ToString();
-            while (choice == null)
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true)
             {
-                choice = PlayerChoice.ReturnUserInput();
-                if (choice == true)
+                System.Random random2 = new System.Random();
+                int type = random2.Next(1, 7);
+                while (type != 0)
                 {
-                    System.Random random2 = new System.Random();
-                    int type = random2.Next(1, 7);
-                    while (type != 0)
+                    if (cookies[type - 1] < 1)
                     {
-                        if (cookies[type - 1] < 1)
-                        {
-                            type = random2.Next(1, 7);
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        type = random2.Next(1, 7);
                     }
-                    ChangeValue(8, -1);
+                    else
+                    {
+                        break;
+                    }
                 }
+                ChangeValue(8, -1);
             }
             displayMessage.text = " ";
         }
         else if (eventNum >= 51 && eventNum <= 85) // Standard sale of a cookie
         {
             displayMessage.text = "Hi, you wouldn't happen to have a spare " + cookie_name[index - 1] + " cookie I could buy, would you?".ToString();
-            while (choice == null)
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true && cookies[index - 1] > 0)
             {
-                choice = PlayerChoice.ReturnUserInput();
-                if (choice == true && cookies[index - 1] > 0)
-                {
-                    ChangeValue(index, -1);
-                    displayMessage.text = " ";
-                }
-                else if (choice == true && cookies[index - 1] <= 0)
-                {
-                    displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the request.".ToString();
-                }
+                ChangeValue(index, -1);
+                displayMessage.text = " ";
+            }
+            else if (choice == true && cookies[index - 1] <= 0)
+            {
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the request.".ToString();
             }
         }
         else if (eventNum >= 86 && eventNum <= 100) // Sale of Multiple of one Cookie
@@ -217,21 +200,18 @@ public class Inventory : MonoBehaviour
             System.Random random2 = new System.Random();
             int change = random2.Next(2, 6); // Sale of between 2 and 5 of the same cookie
             displayMessage.text = "Hi, could I buy " + change + " " + cookie_name[index - 1] + " cookies from you?".ToString();
-            while (choice == null)
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true && cookies[index - 1] >= change)
             {
-                choice = PlayerChoice.ReturnUserInput();
-                if (choice == true && cookies[index - 1] >= change)
-                {
-                    ChangeValue(index, -change);
-                    displayMessage.text = " ";
-                }
-                else if (choice == true && cookies[index - 1] < change)
-                {
-                    displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the request.".ToString();
-                }
+                ChangeValue(index, -change);
+                displayMessage.text = " ";
+            }
+            else if (choice == true && cookies[index - 1] < change)
+            {
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the request.".ToString();
             }
         }
-        choice = null;
+
     }
 
     public void OnHouseEventNum(int eventNum)
@@ -239,23 +219,20 @@ public class Inventory : MonoBehaviour
         System.Random random = new System.Random();
         int index = random.Next(1, 7);
         int change;
-        bool? choice = null;
-        
+        bool choice;
+
         if (eventNum >= 1 && eventNum <= 40) //Standard Sale of a single cookie
         {
             displayMessage.text = "Hello, I ordered one " + cookie_name[index - 1] + " cookie. Have you come to deliver it?".ToString();
-            while (choice == null)
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true && cookies[index - 1] > 0)
             {
-                choice = PlayerChoice.ReturnUserInput();
-                if (choice == true && cookies[index - 1] > 0)
-                {
-                    ChangeValue(index, -1);
-                    displayMessage.text = " ";
-                }
-                else if (choice == true && cookies[index - 1] <= 0)
-                {
-                    displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
-                }
+                ChangeValue(index, -1);
+                displayMessage.text = " ";
+            }
+            else if (choice == true && cookies[index - 1] <= 0)
+            {
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
         }
         else if (eventNum >= 41 && eventNum <= 65) // Sale of Multiple of One Type of Cookie
@@ -264,17 +241,14 @@ public class Inventory : MonoBehaviour
             change = random2.Next(2, 6); // Sale of between 2 and 5 of the same cookie
             displayMessage.text = "Hello, I ordered " + change + " " + cookie_name[index - 1] + "cookies. Have you come to deliver them?".ToString();
             choice = PlayerChoice.ReturnUserInput();
-            while (choice == null)
+            if (choice == true && cookies[index - 1] >= change)
             {
-                if (choice == true && cookies[index - 1] >= change)
-                {
-                    ChangeValue(index, -change);
-                    displayMessage.text = " ";
-                }
-                else if (choice == true && cookies[index - 1] < change)
-                {
-                    displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
-                }
+                ChangeValue(index, -change);
+                displayMessage.text = " ";
+            }
+            else if (choice == true && cookies[index - 1] < change)
+            {
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
         }
         else if (eventNum >= 66 && eventNum <= 80) // Sale of Multiple Types of Cookies
@@ -297,63 +271,53 @@ public class Inventory : MonoBehaviour
                     break;
                 }
             }
-            displayMessage.text = "Hello, I ordered " + change + " " + cookie_name[index - 1] + " and " + change2 + " " + cookie_name[index2 - 1] +" cookies. Have you come to deliver them?".ToString();
+            displayMessage.text = "Hello, I ordered " + change + " " + cookie_name[index - 1] + " and " + change2 + " " + cookie_name[index2 - 1] + " cookies. Have you come to deliver them?".ToString();
             choice = PlayerChoice.ReturnUserInput();
-            while (choice == null)
+            if (choice == true && cookies[index - 1] >= change && cookies[index2 - 1] >= change2)
             {
-                if (choice == true && cookies[index - 1] >= change && cookies[index2 - 1] >= change2)
-                {
-                    ChangeValue(index, -change);
-                    ChangeValue(index2, -change2);
-                    displayMessage.text = " ";
-                }
-                else if (choice == true && (cookies[index - 1] < change || cookies[index2 - 1] < change2))
-                {
-                    displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
-                }
+                ChangeValue(index, -change);
+                ChangeValue(index2, -change2);
+                displayMessage.text = " ";
+            }
+            else if (choice == true && (cookies[index - 1] < change || cookies[index2 - 1] < change2))
+            {
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
         }
         else if (eventNum >= 81 && eventNum <= 90)
         {
             displayMessage.text = "Hello, I ordered one of each cookie. Have you come to deliver them?".ToString();
-            while (choice == null)
+            choice = PlayerChoice.ReturnUserInput();
+            if (choice == true && cookies[0] > 0 && cookies[1] > 0 && cookies[2] > 0 && cookies[3] > 0 && cookies[4] > 0 && cookies[5] > 0)
             {
-                choice = PlayerChoice.ReturnUserInput();
-                if (choice == true && cookies[0] > 0 && cookies[1] > 0 && cookies[2] > 0 && cookies[3] > 0 && cookies[4] > 0 && cookies[5] > 0)
-                {
-                    ChangeValue(1, -1);
-                    ChangeValue(2, -1);
-                    ChangeValue(3, -1);
-                    ChangeValue(4, -1);
-                    ChangeValue(5, -1);
-                    ChangeValue(6, -1);
-                    displayMessage.text = " ";
-                }
-                else if (choice == true && (cookies[0] < 1 || cookies[1] < 1 || cookies[2] < 1 || cookies[3] < 1 || cookies[4] < 1 || cookies[5] < 1))
-                {
-                    displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
-                }
+                ChangeValue(1, -1);
+                ChangeValue(2, -1);
+                ChangeValue(3, -1);
+                ChangeValue(4, -1);
+                ChangeValue(5, -1);
+                ChangeValue(6, -1);
+                displayMessage.text = " ";
+            }
+            else if (choice == true && (cookies[0] < 1 || cookies[1] < 1 || cookies[2] < 1 || cookies[3] < 1 || cookies[4] < 1 || cookies[5] < 1))
+            {
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
         }
         else if (eventNum >= 91 && eventNum <= 100)
         {
             displayMessage.text = "Hello, I ordered one " + cookie_name[index - 1] + "cookie. Have you come to deliver it? I'll give you a tip if you did.".ToString();
             choice = PlayerChoice.ReturnUserInput();
-            while (choice == null)
+            if (choice == true && cookies[index - 1] > 0)
             {
-                if (choice == true && cookies[index - 1] > 0)
-                {
-                    ChangeValue(index, -1);
-                    ChangeValue(7, 7);
-                    displayMessage.text = " ";
-                }
-                else if (choice == true && cookies[index - 1] <= 0)
-                {
-                    displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
-                }
+                ChangeValue(index, -1);
+                ChangeValue(7, 7);
+                displayMessage.text = " ";
+            }
+            else if (choice == true && cookies[index - 1] <= 0)
+            {
+                displayMessage.text = "Oh, dear. It seems as though you don't have enough to fulfill the order.".ToString();
             }
         }
-        choice = null;
         change = 0;
     }
 
