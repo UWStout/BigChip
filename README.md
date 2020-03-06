@@ -1,33 +1,33 @@
-#**Chip On The Block**
+# Chip On The Block
 
-###Description
+## Description
 
-	Play as Chip the Cookie Delivery T-Rex, get your deliveries to your customers and try to make some extra money along the way! Beware, dinosaurs have big appetites and just may complain or thieve their way to cookies.
+##### Play as Chip the Cookie Delivery T-Rex, get your deliveries to your customers and try to make some extra money along the way! Beware, dinosaurs have big appetites and just may complain or thieve their way to cookies.
 
-##**Controls**
+## Controls
 ------------
 
-#####Menu Navigation
+## Menu Navigation
 
-	Using the mouse, clicking on 'Play' will start the game.
+##### Using the mouse, clicking on 'Play' will start the game.
 
-#####In-Game Controls
+## In-Game Controls
 
-	Chip will start walking on his own to his deliveries. Player has two buttons to click on when an event occurs: Confirm or Reject. 
+##### Chip will start walking on his own to his deliveries. Player has two buttons to click on when an event occurs: Confirm or Reject. 
 
-####Resources
+## Resources
 
-	-Unity
-	-Visual Studio Code
-	-Github
-	-Procreate
-	-Adobe Photoshop
-	-Adobe Illustrator
-	-Adobe Indesign
+##### -Unity
+##### -Visual Studio Code
+##### -Github
+##### -Procreate
+##### -Adobe Photoshop
+##### -Adobe Illustrator
+##### -Adobe Indesign
 
-####Credits
+## Credits
 
-	-Georgianna 'Gigi' Read, Artist
-	-Mitch Winebrenner, Artist
-	-Charlie Wery, Programmer
-	-Brandon Tremain, Programmer
+##### -Georgianna 'Gigi' Read, Artist 
+##### -Mitch Winebrenner, Artist
+##### -Charlie Wery, Programmer
+##### -Brandon Tremain, Programmer
