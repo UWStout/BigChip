@@ -4,9 +4,6 @@
 
 ##### Play as Chip the Cookie Delivery T-Rex, get your deliveries to your customers and try to make some extra money along the way! Beware, dinosaurs have big appetites and just may complain or thieve their way to cookies.
 
-## Controls
-------------
-
 ## Menu Navigation
 
 ##### Using the mouse, clicking on 'Play' will start the game.
